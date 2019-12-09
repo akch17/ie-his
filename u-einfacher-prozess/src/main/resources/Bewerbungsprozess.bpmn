@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_10dgw71" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <bpmn:process id="Process_1q1osxz" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_13ykkr3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_13ykkr3" sourceRef="StartEvent_1" targetRef="Task_086psu5" />
+    <bpmn:serviceTask id="Task_086psu5" name="Studienganginformationen aus Datenbank laden">
+      <bpmn:incoming>SequenceFlow_13ykkr3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1q22mm5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1q22mm5" sourceRef="Task_086psu5" targetRef="Task_029ne3k" />
+    <bpmn:userTask id="Task_029ne3k" name="Unterlagen ausfüllen und Dokumente hochladen">
+      <bpmn:incoming>SequenceFlow_1q22mm5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_15aem3r</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_15aem3r" sourceRef="Task_029ne3k" targetRef="Task_1py5odx" />
+    <bpmn:serviceTask id="Task_1py5odx" name="Bewerberdaten in die Datenbank hochladen">
+      <bpmn:incoming>SequenceFlow_15aem3r</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1kiwm5v</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1kiwm5v" sourceRef="Task_1py5odx" targetRef="EndEvent_1i79ma9" />
+    <bpmn:endEvent id="EndEvent_1i79ma9" name="Zu Prozess Immatrikulation">
+      <bpmn:incoming>SequenceFlow_1kiwm5v</bpmn:incoming>
+      <bpmn:messageEventDefinition />
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1q1osxz">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_13ykkr3_di" bpmnElement="SequenceFlow_13ykkr3">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0gr2j9u_di" bpmnElement="Task_086psu5">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1q22mm5_di" bpmnElement="SequenceFlow_1q22mm5">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1xdpiub_di" bpmnElement="Task_029ne3k">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_15aem3r_di" bpmnElement="SequenceFlow_15aem3r">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0swhu8o_di" bpmnElement="Task_1py5odx">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1kiwm5v_di" bpmnElement="SequenceFlow_1kiwm5v">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="752" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0hqk4r6_di" bpmnElement="EndEvent_1i79ma9">
+        <dc:Bounds x="752" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="733" y="142" width="75" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

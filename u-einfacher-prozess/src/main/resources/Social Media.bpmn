@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0ny8omk" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <bpmn:process id="Process_1hi1cey" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Bewerbungsfrist startet">
+      <bpmn:outgoing>SequenceFlow_1gux4ye</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1gux4ye" sourceRef="StartEvent_1" targetRef="Task_157lxrp" />
+    <bpmn:sendTask id="Task_157lxrp" name="Social Media Nachricht bezüglich Bewerbungsfriststart senden">
+      <bpmn:incoming>SequenceFlow_1gux4ye</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0y23dv0</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0y23dv0" sourceRef="Task_157lxrp" targetRef="IntermediateThrowEvent_1jzr7zb" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1jzr7zb" name="Eine Woche vor Bewerbungsfrist ende">
+      <bpmn:incoming>SequenceFlow_0y23dv0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0txxe77</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0txxe77" sourceRef="IntermediateThrowEvent_1jzr7zb" targetRef="Task_0ltptu9" />
+    <bpmn:sendTask id="Task_0ltptu9" name="Social Media Nachricht bezüglich endender Bewerbungsfrist senden">
+      <bpmn:incoming>SequenceFlow_0txxe77</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19gj93g</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_19gj93g" sourceRef="Task_0ltptu9" targetRef="IntermediateThrowEvent_0ou2k4e" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0ou2k4e" name="Ende der Bewerbungsfrist">
+      <bpmn:incoming>SequenceFlow_19gj93g</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0llzbxz</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0llzbxz" sourceRef="IntermediateThrowEvent_0ou2k4e" targetRef="Task_14s6tjd" />
+    <bpmn:sendTask id="Task_14s6tjd" name="Social Media bezüglich dem Ende der Bewerbungsfrist senden">
+      <bpmn:incoming>SequenceFlow_0llzbxz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ny7pl0</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0ny7pl0" sourceRef="Task_14s6tjd" targetRef="IntermediateThrowEvent_0qwm817" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_0qwm817" name="Zahlungsfriststart">
+      <bpmn:incoming>SequenceFlow_0ny7pl0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dgd273</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0dgd273" sourceRef="IntermediateThrowEvent_0qwm817" targetRef="Task_17i558i" />
+    <bpmn:sendTask id="Task_17i558i" name="Social Media Nachricht bezüglich dem Start der Zahlungsfrist senden">
+      <bpmn:incoming>SequenceFlow_0dgd273</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1sngztu</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1sngztu" sourceRef="Task_17i558i" targetRef="IntermediateThrowEvent_081hlmr" />
+    <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_081hlmr" name="Zahlungsfristende">
+      <bpmn:incoming>SequenceFlow_1sngztu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0mkdygk</bpmn:outgoing>
+      <bpmn:timerEventDefinition />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0mkdygk" sourceRef="IntermediateThrowEvent_081hlmr" targetRef="Task_0ltbcr5" />
+    <bpmn:sendTask id="Task_0ltbcr5" name="Social Media Nachricht bezüglich der endenden Zahlungsfrist senden">
+      <bpmn:incoming>SequenceFlow_0mkdygk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1g2n5z7</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="EndEvent_0eks2jz" name="Semesterbeginn">
+      <bpmn:incoming>SequenceFlow_1g2n5z7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1g2n5z7" sourceRef="Task_0ltbcr5" targetRef="EndEvent_0eks2jz" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1hi1cey">
+      <bpmndi:BPMNShape id="StartEvent_0ghke6d_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="142" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1gux4ye_di" bpmnElement="SequenceFlow_1gux4ye">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_037limp_di" bpmnElement="Task_157lxrp">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0y23dv0_di" bpmnElement="SequenceFlow_0y23dv0">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_0uldn7x_di" bpmnElement="IntermediateThrowEvent_1jzr7zb">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="410" y="142" width="80" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0txxe77_di" bpmnElement="SequenceFlow_0txxe77">
+        <di:waypoint x="468" y="117" />
+        <di:waypoint x="530" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_19k927g_di" bpmnElement="Task_0ltptu9">
+        <dc:Bounds x="530" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_19gj93g_di" bpmnElement="SequenceFlow_19gj93g">
+        <di:waypoint x="630" y="117" />
+        <di:waypoint x="692" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_0z3j6pk_di" bpmnElement="IntermediateThrowEvent_0ou2k4e">
+        <dc:Bounds x="692" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="670" y="142" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0llzbxz_di" bpmnElement="SequenceFlow_0llzbxz">
+        <di:waypoint x="728" y="117" />
+        <di:waypoint x="790" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_1s7t22j_di" bpmnElement="Task_14s6tjd">
+        <dc:Bounds x="790" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ny7pl0_di" bpmnElement="SequenceFlow_0ny7pl0">
+        <di:waypoint x="890" y="117" />
+        <di:waypoint x="952" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_03ucokd_di" bpmnElement="IntermediateThrowEvent_0qwm817">
+        <dc:Bounds x="952" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="928" y="142" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dgd273_di" bpmnElement="SequenceFlow_0dgd273">
+        <di:waypoint x="988" y="117" />
+        <di:waypoint x="1050" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_18c80ut_di" bpmnElement="Task_17i558i">
+        <dc:Bounds x="1050" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1sngztu_di" bpmnElement="SequenceFlow_1sngztu">
+        <di:waypoint x="1150" y="117" />
+        <di:waypoint x="1212" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="IntermediateCatchEvent_0sqpswa_di" bpmnElement="IntermediateThrowEvent_081hlmr">
+        <dc:Bounds x="1212" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1186" y="142" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0mkdygk_di" bpmnElement="SequenceFlow_0mkdygk">
+        <di:waypoint x="1248" y="117" />
+        <di:waypoint x="1310" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_0v3pyxu_di" bpmnElement="Task_0ltbcr5">
+        <dc:Bounds x="1310" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0eks2jz_di" bpmnElement="EndEvent_0eks2jz">
+        <dc:Bounds x="1472" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1450" y="142" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1g2n5z7_di" bpmnElement="SequenceFlow_1g2n5z7">
+        <di:waypoint x="1410" y="117" />
+        <di:waypoint x="1472" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
