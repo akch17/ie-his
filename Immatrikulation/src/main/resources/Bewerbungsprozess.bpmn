@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_10dgw71" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <bpmn:process id="Bewerbungsprozess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_13ykkr3</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_13ykkr3" sourceRef="StartEvent_1" targetRef="Bewerbungsprozess1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1trkn27" sourceRef="Bewerbungsprozess2" targetRef="Task_029ne3k" />
+    <bpmn:userTask id="Bewerbungsprozess2" name="Studiengang auswählen" camunda:formKey="embedded:app:forms/StudiengangAuswahl.html">
+      <bpmn:incoming>SequenceFlow_05bl162</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1trkn27</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_05bl162" sourceRef="Bewerbungsprozess1" targetRef="Bewerbungsprozess2" />
+    <bpmn:serviceTask id="Bewerbungsprozess1" name="Studiengänge auslesen" camunda:class="learnbpm.example.bewerbung.StudienganglisteDelegate">
+      <bpmn:incoming>SequenceFlow_13ykkr3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_05bl162</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:scriptTask id="Task_029ne3k" name="Studiengang ausgeben" scriptFormat="JavaScript">
+      <bpmn:incoming>SequenceFlow_1trkn27</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ksgvu4</bpmn:outgoing>
+      <bpmn:script>print("Studiengang: "+studiengang);</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="EndEvent_0m0l91h">
+      <bpmn:incoming>SequenceFlow_05e8id7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0ksgvu4" sourceRef="Task_029ne3k" targetRef="Task_0is128s" />
+    <bpmn:sequenceFlow id="SequenceFlow_1p20nnp" sourceRef="Task_0is128s" targetRef="UserTask_139r8ys" />
+    <bpmn:scriptTask id="Task_0is128s" name="Test" scriptFormat="JavaScript">
+      <bpmn:incoming>SequenceFlow_0ksgvu4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1p20nnp</bpmn:outgoing>
+      <bpmn:script>print("TEST");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:userTask id="UserTask_139r8ys" name="Unterlagen ausfüllen und Dokumente hochladen" camunda:formKey="embedded:app:forms/BewerbungErstellen.html">
+      <bpmn:incoming>SequenceFlow_1p20nnp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_05e8id7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_05e8id7" sourceRef="UserTask_139r8ys" targetRef="EndEvent_0m0l91h" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Bewerbungsprozess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_13ykkr3_di" bpmnElement="SequenceFlow_13ykkr3">
+        <di:waypoint x="188" y="117" />
+        <di:waypoint x="220" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1trkn27_di" bpmnElement="SequenceFlow_1trkn27">
+        <di:waypoint x="470" y="117" />
+        <di:waypoint x="550" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1wfvqqy_di" bpmnElement="Bewerbungsprozess2">
+        <dc:Bounds x="370" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05bl162_di" bpmnElement="SequenceFlow_05bl162">
+        <di:waypoint x="320" y="117" />
+        <di:waypoint x="370" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1gvviis_di" bpmnElement="Bewerbungsprozess1">
+        <dc:Bounds x="220" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_0lk4l6d_di" bpmnElement="Task_029ne3k">
+        <dc:Bounds x="550" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0m0l91h_di" bpmnElement="EndEvent_0m0l91h">
+        <dc:Bounds x="1132" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ksgvu4_di" bpmnElement="SequenceFlow_0ksgvu4">
+        <di:waypoint x="650" y="117" />
+        <di:waypoint x="680" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1p20nnp_di" bpmnElement="SequenceFlow_1p20nnp">
+        <di:waypoint x="780" y="117" />
+        <di:waypoint x="840" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ScriptTask_0ogh9v7_di" bpmnElement="Task_0is128s">
+        <dc:Bounds x="680" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_139r8ys_di" bpmnElement="UserTask_139r8ys">
+        <dc:Bounds x="840" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05e8id7_di" bpmnElement="SequenceFlow_05e8id7">
+        <di:waypoint x="940" y="117" />
+        <di:waypoint x="1132" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

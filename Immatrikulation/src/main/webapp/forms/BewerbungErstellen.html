@@ -1,0 +1,150 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<h2>Bewerbung erstellen</h2>
+
+<form class="form-horizontal">
+ 
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Persönliche Daten</h3>
+
+<div class="control-group">
+  <label class="control-label">Vorname</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="vorname"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">Nachname</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="nachname"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">Adresse</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="adresse"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">PLZ</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="plz"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">Email</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="email"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+<div class="control-group">
+  <label class="control-label">NC</label>
+  <div class="controls">
+  <!--
+  Erfassung des Tippernamens und Speichern in der Prozessvariable name
+  camunda-ID der  Variable  über  cam-variable-name
+  camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
+      -->
+    <input type="text"
+           cam-variable-name="nc"
+           cam-variable-type="String"
+           required
+           class="form-control" />
+  </div>
+</div>
+</div>
+
+
+  
+<div class="col-xs-6">
+
+  <!-- Control zum Upload einer Datei -->
+
+
+
+
+
+<div class="control-group">
+  <label class="control-label">Passbild (max. 1 Datei, max. 2 MB) </label>
+  <div class="controls">
+
+<input type="file"
+     cam-variable-name="PASSBILD_DOC"
+     cam-variable-type="File"
+     cam-max-filesize="2000000" />
+     </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label">Zeugnins (max. 1 Datei, max. 2 MB) </label>
+  <div class="controls">
+
+<input type="file"
+     cam-variable-name="ZEUGNIS_DOC"
+     cam-variable-type="File"
+     cam-max-filesize="2000000" />
+     </div>
+  </div>
+  <div class="control-group">
+  <label class="control-label">Lebenslauf (max. 1 Datei, max. 2 MB) </label>
+  <div class="controls">
+
+<input type="file"
+     cam-variable-name="LEBENSLAUF_DOC"
+     cam-variable-type="File"
+     cam-max-filesize="2000000" />
+     </div>
+  </div>
+</div>
+   
+
+  <script cam-script type="text/form-script">
+  // custom JavaScript goes here
+  </script>
+</form>
