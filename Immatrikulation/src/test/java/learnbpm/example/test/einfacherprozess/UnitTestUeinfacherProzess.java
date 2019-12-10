@@ -76,7 +76,7 @@ public class UnitTestUeinfacherProzess {
 		// Prozessinstanz starten vor der Aktivität mit dem Key (=Id des Elements im
 		// Prozessmodell)
 		ProcessInstance pi = processEngine().getRuntimeService().createProcessInstanceByKey("Social-Media-Prozess")
-				.startBeforeActivity("TEST").execute();
+				.startBeforeActivity("test2").execute();
 		
 		System.out.println("Prozessinstanz mit der Id "+ pi.getId()+ " gestartet");
 

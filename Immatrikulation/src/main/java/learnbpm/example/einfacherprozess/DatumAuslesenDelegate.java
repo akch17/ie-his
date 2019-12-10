@@ -32,36 +32,34 @@ public class DatumAuslesenDelegate implements JavaDelegate {
 		//Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst gibt es eine
 		// Fehlermeldung
 		String sql = "Select AktuellesDatum from his.datum";
-
+		String sql2 = "SELECT festgelegteZeiten FROM his.datum";
 		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der Konsole zu Debuggingzwecken
 		System.out.println(this.getClass().getName()+": \n"+sql);
 		
 		
 		// Ausführen des Selects auf der DB
 		ResultSet res = stmt.executeQuery(sql);
-		
-		// Cursor des ResultSets auf die erste Position setzen
-		//res.first();
-		
+ 
 		// Wert aus erste Spalte über Methode getDate als Datum auslesen
 	//	Date unformatiert_tippdatum2 = res.getDate(0);
-		ArrayList<Date> Datum = new ArrayList<Date>();
-	 
+		ArrayList<Date> Datumstart = new ArrayList<Date>();
+		ArrayList<Date> Datumende = new ArrayList<Date>();
 		 while (res.next()) { 
-			 Datum.add(res.getDate(1));
+			 Datumstart.add(res.getDate(1));
 		}
 
-	 
-	
+		res = stmt.executeQuery(sql2);
+		 while (res.next()) { 
+			 Datumende.add(res.getDate(1));
+		}
  
-		 arg0.setVariable("Bewerberstart", Datum.get(0));
-		 arg0.setVariable("Zahlungsfriststart", Datum.get(1));
- 
+		 arg0.setVariable("Bewerberstart", Datumstart.get(0));
+		 arg0.setVariable("Zahlungsfriststart", Datumstart.get(1));
+		 arg0.setVariable("Bewerberende", Datumende.get(0));
+		 arg0.setVariable("Zahlugsende", Datumende.get(1));
 		 
  
-		 System.out.println(Datum.get(0));
- 
-		 System.out.println(Datum.get(1));
+		 
 	}
 
 }
