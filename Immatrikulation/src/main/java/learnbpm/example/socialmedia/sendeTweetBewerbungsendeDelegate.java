@@ -1,4 +1,4 @@
-package learnbpm.example.einfacherprozess;
+package learnbpm.example.socialmedia;
 
 import java.sql.Connection;
 import java.sql.Date;

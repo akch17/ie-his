@@ -1,4 +1,4 @@
-package learnbpm.example.einfacherprozess;
+package learnbpm.example.socialmedia;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,9 +15,9 @@ import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 
-public class sendeTweetZahlungsstartDelegate implements JavaDelegate {
+public class sendeTweetBewerbungsstartDelegate implements JavaDelegate {
 
-	public sendeTweetZahlungsstartDelegate() {
+	public sendeTweetBewerbungsstartDelegate() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -73,10 +73,10 @@ public class sendeTweetZahlungsstartDelegate implements JavaDelegate {
 	 
 				
 				java.text.SimpleDateFormat datumformat = new java.text.SimpleDateFormat("dd.MM.yyyy");
-				String Datum = datumformat.format(Datumstart.get(1));		
+				String Datum = datumformat.format(Datumstart.get(0));		
 				
 		//Tweetnachricht zusammenstellen
-				String content =   zufallszahl.toString() + "Die Zahlungsfrist beginnt beginnt am "+ Datum + " . Bitte denken Sie daran die Zahlungs rechtzeitig zu tätigen.";
+		String content =   zufallszahl.toString() + " Liebe Bewerber, eure Bewerbungen könnt Ihr ab dem "+ Datum + " senden!";
 	 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo", "B28Ze8VDucBdiE38aVQqTxOyPc7eHunxBVv7XgGim4say");
@@ -92,6 +92,8 @@ public class sendeTweetZahlungsstartDelegate implements JavaDelegate {
 		twittermsg.updateStatus(content);
 		
 		// Tweeterfolg prüfen auf https://twitter.com/camunda_demo
+
+
 	}
 
 }
