@@ -21,7 +21,7 @@
       <bpmn:script>print("Studiengang: "+studiengang);</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:endEvent id="EndEvent_0m0l91h">
-      <bpmn:incoming>SequenceFlow_05e8id7</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0apf9ai</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0ksgvu4" sourceRef="Task_029ne3k" targetRef="Task_0is128s" />
     <bpmn:sequenceFlow id="SequenceFlow_1p20nnp" sourceRef="Task_0is128s" targetRef="UserTask_139r8ys" />
@@ -34,7 +34,12 @@
       <bpmn:incoming>SequenceFlow_1p20nnp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05e8id7</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_05e8id7" sourceRef="UserTask_139r8ys" targetRef="EndEvent_0m0l91h" />
+    <bpmn:sequenceFlow id="SequenceFlow_05e8id7" sourceRef="UserTask_139r8ys" targetRef="Task_0mlnzli" />
+    <bpmn:sequenceFlow id="SequenceFlow_0apf9ai" sourceRef="Task_0mlnzli" targetRef="EndEvent_0m0l91h" />
+    <bpmn:serviceTask id="Task_0mlnzli" name="Bewerbung in Datenbank speichern" camunda:class="learnbpm.example.bewerbung.BewerbungInDBDelegate">
+      <bpmn:incoming>SequenceFlow_05e8id7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0apf9ai</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Bewerbungsprozess">
@@ -81,8 +86,15 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_05e8id7_di" bpmnElement="SequenceFlow_05e8id7">
         <di:waypoint x="940" y="117" />
+        <di:waypoint x="970" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0apf9ai_di" bpmnElement="SequenceFlow_0apf9ai">
+        <di:waypoint x="1070" y="117" />
         <di:waypoint x="1132" y="117" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1slwn8t_di" bpmnElement="Task_0mlnzli">
+        <dc:Bounds x="970" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
