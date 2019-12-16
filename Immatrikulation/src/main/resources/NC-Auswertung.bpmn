@@ -9,10 +9,15 @@
       <bpmn:outgoing>SequenceFlow_1mneaet</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1mneaet" sourceRef="StartEvent_1" targetRef="Task_1eocm2s" />
-    <bpmn:endEvent id="EndEvent_0t1oqzx">
-      <bpmn:incoming>SequenceFlow_1duwfxf</bpmn:incoming>
+    <bpmn:endEvent id="EndEvent_0t1oqzx" name="Ende">
+      <bpmn:incoming>SequenceFlow_0hihc78</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1duwfxf" sourceRef="Task_1eocm2s" targetRef="EndEvent_0t1oqzx" />
+    <bpmn:sequenceFlow id="SequenceFlow_1duwfxf" sourceRef="Task_1eocm2s" targetRef="Task_0it9e2o" />
+    <bpmn:sequenceFlow id="SequenceFlow_0hihc78" sourceRef="Task_0it9e2o" targetRef="EndEvent_0t1oqzx" />
+    <bpmn:sendTask id="Task_0it9e2o" name="Prozess Immatrikulation-NC auslösen" camunda:class="learnbpm.example.nc.StarteProzessImmatrikulationNcDelegate">
+      <bpmn:incoming>SequenceFlow_1duwfxf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0hihc78</bpmn:outgoing>
+    </bpmn:sendTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="NC-Auswertung">
@@ -31,11 +36,21 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0t1oqzx_di" bpmnElement="EndEvent_0t1oqzx">
         <dc:Bounds x="712" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="717" y="142" width="26" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1duwfxf_di" bpmnElement="SequenceFlow_1duwfxf">
         <di:waypoint x="510" y="117" />
+        <di:waypoint x="570" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0hihc78_di" bpmnElement="SequenceFlow_0hihc78">
+        <di:waypoint x="670" y="117" />
         <di:waypoint x="712" y="117" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_1ysug46_di" bpmnElement="Task_0it9e2o">
+        <dc:Bounds x="570" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

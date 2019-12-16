@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1o8yf1i" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <bpmn:process id="Immatrikulation-NC-Status" isExecutable="true">
+    <bpmn:exclusiveGateway id="ExclusiveGateway_00in8jw" name="Bewerber angenommen?">
+      <bpmn:incoming>SequenceFlow_1qpxpkw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_06bx682</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0nyj4kj</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1qpxpkw" sourceRef="Task_04qmeu0" targetRef="ExclusiveGateway_00in8jw" />
+    <bpmn:sequenceFlow id="SequenceFlow_06bx682" name="Nein" sourceRef="ExclusiveGateway_00in8jw" targetRef="Task_1pahv8y">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not statusNc}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Task_04qmeu0" name="Bewerberstatus auswerten" camunda:class="ncStatus.NcAuswertungStatusDelegate">
+      <bpmn:incoming>SequenceFlow_0w55kch</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1qpxpkw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0nyj4kj" name="Ja" sourceRef="ExclusiveGateway_00in8jw" targetRef="Task_0jnq2x9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${statusNc}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="Task_1pahv8y" name="Status auf &#34;Notendruchschnitt nicht ausreichend&#34; setzen" scriptFormat="JavaScript">
+      <bpmn:incoming>SequenceFlow_06bx682</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1davrde</bpmn:outgoing>
+      <bpmn:script>print("Bewerber "+statusNc+":  Note nicht ausreichend");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:scriptTask id="Task_0jnq2x9" name="Studiengangzulassungsart ermitteln" scriptFormat="JavaScript">
+      <bpmn:incoming>SequenceFlow_0nyj4kj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0v4cmlb</bpmn:outgoing>
+      <bpmn:script>print("Bewerber "+statusNc+":  Note istausreichend");</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="EndEvent_01phs5r" name="Ende">
+      <bpmn:incoming>SequenceFlow_1wkp4pw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0v4cmlb" sourceRef="Task_0jnq2x9" targetRef="ExclusiveGateway_1b6mun1" />
+    <bpmn:startEvent id="StartImmatrikulationNcStatus" name="NC-Auswertung beendet">
+      <bpmn:outgoing>SequenceFlow_0w55kch</bpmn:outgoing>
+      <bpmn:messageEventDefinition messageRef="Message_16aad26" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0w55kch" sourceRef="StartImmatrikulationNcStatus" targetRef="Task_04qmeu0" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1b6mun1">
+      <bpmn:incoming>SequenceFlow_1davrde</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0v4cmlb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wkp4pw</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1davrde" sourceRef="Task_1pahv8y" targetRef="ExclusiveGateway_1b6mun1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1wkp4pw" sourceRef="ExclusiveGateway_1b6mun1" targetRef="EndEvent_01phs5r" />
+  </bpmn:process>
+  <bpmn:message id="Message_1gkjqj9" name="Immatrikulation-NC-Status" />
+  <bpmn:message id="Message_16aad26" name="ImmatrikulationNcStatus" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Immatrikulation-NC-Status">
+      <bpmndi:BPMNShape id="ExclusiveGateway_00in8jw_di" bpmnElement="ExclusiveGateway_00in8jw" isMarkerVisible="true">
+        <dc:Bounds x="465" y="225" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="453" y="282" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qpxpkw_di" bpmnElement="SequenceFlow_1qpxpkw">
+        <di:waypoint x="369" y="250" />
+        <di:waypoint x="465" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_06bx682_di" bpmnElement="SequenceFlow_06bx682">
+        <di:waypoint x="490" y="225" />
+        <di:waypoint x="490" y="160" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="463" y="193" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_18o00va_di" bpmnElement="Task_04qmeu0">
+        <dc:Bounds x="269" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nyj4kj_di" bpmnElement="SequenceFlow_0nyj4kj">
+        <di:waypoint x="515" y="250" />
+        <di:waypoint x="620" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="562" y="232" width="12" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ScriptTask_1490ock_di" bpmnElement="Task_1pahv8y">
+        <dc:Bounds x="440" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ScriptTask_076345k_di" bpmnElement="Task_0jnq2x9">
+        <dc:Bounds x="620" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_01phs5r_di" bpmnElement="EndEvent_01phs5r">
+        <dc:Bounds x="832" y="232" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="837" y="275" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0v4cmlb_di" bpmnElement="SequenceFlow_0v4cmlb">
+        <di:waypoint x="720" y="250" />
+        <di:waypoint x="755" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_12957i1_di" bpmnElement="StartImmatrikulationNcStatus">
+        <dc:Bounds x="182" y="152" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="162" y="195" width="78" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0w55kch_di" bpmnElement="SequenceFlow_0w55kch">
+        <di:waypoint x="218" y="170" />
+        <di:waypoint x="244" y="170" />
+        <di:waypoint x="244" y="250" />
+        <di:waypoint x="269" y="250" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1b6mun1_di" bpmnElement="ExclusiveGateway_1b6mun1" isMarkerVisible="true">
+        <dc:Bounds x="755" y="225" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1davrde_di" bpmnElement="SequenceFlow_1davrde">
+        <di:waypoint x="540" y="120" />
+        <di:waypoint x="780" y="120" />
+        <di:waypoint x="780" y="225" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wkp4pw_di" bpmnElement="SequenceFlow_1wkp4pw">
+        <di:waypoint x="805" y="250" />
+        <di:waypoint x="832" y="250" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
