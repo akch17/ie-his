@@ -1,5 +1,7 @@
 package learnbpm.example.bewerbung;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -7,13 +9,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.value.FileValue;
+import org.omg.CORBA.portable.OutputStream;
 
 public class BewerbungInDBDelegate implements JavaDelegate {
 
+	static Integer id;
+	
 	public BewerbungInDBDelegate() {
 		// TODO Auto-generated constructor stub
 	}
@@ -50,7 +56,7 @@ public class BewerbungInDBDelegate implements JavaDelegate {
 		String sql = "select max(BewerberID) from his.bewerber";
 		ResultSet resultSet;
 		resultSet = statement.executeQuery(sql);
-		int id = 0;
+		 id = 0;
 		
 		
 		
@@ -95,14 +101,40 @@ public class BewerbungInDBDelegate implements JavaDelegate {
 		bewerber.executeUpdate();
 		
 		
+		
+		dateiAbspeichern(lebenslauf);
+		dateiAbspeichern(passbild);
+		dateiAbspeichern(zeugnis);
+		
+		
 		try {
 			bewerber.close();
 		} catch(Exception e) {
 			
 		}
+		connection.close();
 		
 	}
 	
-	
+	public void dateiAbspeichern(InputStream inputstream){
+		try {
+			inputstream.reset();
+		byte[] buffer = new byte[inputstream.available()];
+		inputstream.read(buffer);
+		Random r = new Random();
+		Integer i = r.nextInt();
+		String zufall = i.toString();
+		
+		String dateiUndPfad = "/test/bewerber_ID"+id+"_"+zufall+".pdf";
+		File zielDatei = new File(dateiUndPfad);
+		FileOutputStream out = new FileOutputStream(zielDatei);
+		out.write(buffer);
+		out.close();
+		
+		} catch (IOException e) {
+			System.out.println("Datei konnte nicht abgespeichert werden");
+			e.printStackTrace();
+		}
+	}
 
 }
