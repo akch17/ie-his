@@ -3,22 +3,24 @@
   <bpmn:process id="NC-Auswertung" isExecutable="true">
     <bpmn:serviceTask id="Task_1eocm2s" name="Studiengang auswählen" camunda:class="learnbpm.example.nc.StudiegaengeNCDelegate">
       <bpmn:incoming>SequenceFlow_1mneaet</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1duwfxf</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_187vtii</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:startEvent id="StartEvent_1" name="Bewerbungsfrist-Ende">
       <bpmn:outgoing>SequenceFlow_1mneaet</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1mneaet" sourceRef="StartEvent_1" targetRef="Task_1eocm2s" />
     <bpmn:endEvent id="EndEvent_0t1oqzx" name="Ende">
-      <bpmn:incoming>SequenceFlow_0hihc78</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1bjwxxh</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1duwfxf" sourceRef="Task_1eocm2s" targetRef="Task_0it9e2o" />
-    <bpmn:sequenceFlow id="SequenceFlow_0hihc78" sourceRef="Task_0it9e2o" targetRef="EndEvent_0t1oqzx" />
-    <bpmn:sendTask id="Task_0it9e2o" name="Prozess Immatrikulation-NC auslösen" camunda:class="learnbpm.example.nc.StarteProzessImmatrikulationNcDelegate">
-      <bpmn:incoming>SequenceFlow_1duwfxf</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0hihc78</bpmn:outgoing>
-    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="SequenceFlow_187vtii" sourceRef="Task_1eocm2s" targetRef="IntermediateThrowEvent_04gl4mp" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_04gl4mp">
+      <bpmn:incoming>SequenceFlow_187vtii</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1bjwxxh</bpmn:outgoing>
+      <bpmn:signalEventDefinition signalRef="Signal_1sk25t4" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1bjwxxh" sourceRef="IntermediateThrowEvent_04gl4mp" targetRef="EndEvent_0t1oqzx" />
   </bpmn:process>
+  <bpmn:signal id="Signal_1sk25t4" name="ImmatrikulationNcStatus" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="NC-Auswertung">
       <bpmndi:BPMNShape id="ServiceTask_04786a0_di" bpmnElement="Task_1eocm2s">
@@ -35,22 +37,22 @@
         <di:waypoint x="410" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0t1oqzx_di" bpmnElement="EndEvent_0t1oqzx">
-        <dc:Bounds x="712" y="99" width="36" height="36" />
+        <dc:Bounds x="822" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="717" y="142" width="26" height="14" />
+          <dc:Bounds x="827" y="142" width="26" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1duwfxf_di" bpmnElement="SequenceFlow_1duwfxf">
+      <bpmndi:BPMNEdge id="SequenceFlow_187vtii_di" bpmnElement="SequenceFlow_187vtii">
         <di:waypoint x="510" y="117" />
-        <di:waypoint x="570" y="117" />
+        <di:waypoint x="652" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0hihc78_di" bpmnElement="SequenceFlow_0hihc78">
-        <di:waypoint x="670" y="117" />
-        <di:waypoint x="712" y="117" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="SendTask_1ysug46_di" bpmnElement="Task_0it9e2o">
-        <dc:Bounds x="570" y="77" width="100" height="80" />
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_04snfwa_di" bpmnElement="IntermediateThrowEvent_04gl4mp">
+        <dc:Bounds x="652" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1bjwxxh_di" bpmnElement="SequenceFlow_1bjwxxh">
+        <di:waypoint x="688" y="117" />
+        <di:waypoint x="822" y="117" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

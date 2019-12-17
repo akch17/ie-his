@@ -1,4 +1,4 @@
-package ncStatus;
+package learnbpm.example.ncStatus;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

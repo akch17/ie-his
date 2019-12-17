@@ -14,7 +14,9 @@ public class StarteProzessImmatrikulationNcDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		String id = "4";
 		RuntimeService rtm = execution.getProcessEngineServices().getRuntimeService();
-		rtm.startProcessInstanceByMessage("ImmatrikulationNcStatus",id);
+//		rtm.startProcessInstanceByMessage("ImmatrikulationNcStatus");
+		
+		rtm.messageEventReceived("ImmatrikulationNcStatus", "Immatrikulation-NC-Status");
 	}
 
 }
