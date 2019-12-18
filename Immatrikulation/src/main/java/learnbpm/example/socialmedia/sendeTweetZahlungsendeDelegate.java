@@ -34,8 +34,8 @@ public class sendeTweetZahlungsendeDelegate implements JavaDelegate {
 		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der idspieltipp=3 aus der
 		//Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst gibt es eine
 		// Fehlermeldung
-		String sql = "Select AktuellesDatum from his.datum";
-		String sql2 = "SELECT festgelegteZeiten FROM his.datum";
+		String sql = "Select Fristanfang from his.datum";
+		String sql2 = "SELECT Fristende FROM his.datum";
 		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der Konsole zu Debuggingzwecken
 		System.out.println(this.getClass().getName()+": \n"+sql);
 		

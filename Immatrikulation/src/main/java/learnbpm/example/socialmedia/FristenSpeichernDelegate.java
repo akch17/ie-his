@@ -38,7 +38,7 @@ public class FristenSpeichernDelegate implements JavaDelegate {
 		String Zahlungsfristendeformat = sdf.format(Zahlungsfristende);
 
 		// Fristen Bewerbung in die Datenbank
-		String sql = "INSERT INTO `his`.`datum` (`DatumID`, `AktuellesDatum`, `Bezeichnung`,`festgelegteZeiten`) "
+		String sql = "INSERT INTO `his`.`datum` (`DatumID`, `Fristanfang`, `Bezeichnung`,`Fristende`) "
 				+ "VALUES (?, ?, ?, ?)";
 
 		PreparedStatement fristen = null;
@@ -58,7 +58,7 @@ public class FristenSpeichernDelegate implements JavaDelegate {
 		}
 
 		// Fristen Zahlung in die Datenbank
-		sql = "INSERT INTO `his`.`datum` (`DatumID`, `AktuellesDatum`, `Bezeichnung`,`festgelegteZeiten`) "
+		sql = "INSERT INTO `his`.`datum` (`DatumID`, `Fristanfang`, `Bezeichnung`,`Fristende`) "
 				+ "VALUES (?, ?, ?, ?)";
 
 		fristen = null;
@@ -66,7 +66,7 @@ public class FristenSpeichernDelegate implements JavaDelegate {
 
 		fristen.setInt(1, 2);
 		fristen.setString(2, Zahlungsfriststartformat);
-		fristen.setString(3, "Bewerberzeitraum");
+		fristen.setString(3, "Zahlungszeitraum");
 		fristen.setString(4, Zahlungsfristendeformat);
 
 		fristen.executeUpdate();

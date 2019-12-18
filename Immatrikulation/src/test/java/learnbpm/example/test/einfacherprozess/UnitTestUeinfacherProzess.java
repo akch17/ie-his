@@ -58,27 +58,27 @@ public class UnitTestUeinfacherProzess {
 
 	// JUnit-Test für den gesamten Prozess
 	@Test
-	@Deployment(resources = "Social-Media.bpmn") // hier die Prozessmodelle aufführen die getest werden sollen
+	@Deployment(resources = "testdiagramme.bpmn") // hier die Prozessmodelle aufführen die getest werden sollen
 	public void testProzess() {
 
 		// Prozessinstanz des Prozessmodells mit dem Key (=Id des Prozessmodells)
 		// erzeugen und starten
 
-		ProcessInstance pi = processEngine().getRuntimeService().startProcessInstanceByKey("Social-Media-Prozess");
+		ProcessInstance pi = processEngine().getRuntimeService().startProcessInstanceByKey("Testprozess");
 		System.out.println("Prozessinstanz mit der Id "+ pi.getId()+ " gestartet");
 	}
 
 	// JUnit-Test für einen Prozessteil
 	@Test
-	@Deployment(resources = "Social-Media.bpmn")
+	@Deployment(resources = "testdiagramme.bpmn")
 	public void testTeilprozess() {
 
 		// Prozessinstanz starten vor der Aktivität mit dem Key (=Id des Elements im
 		// Prozessmodell)
-		ProcessInstance pi = processEngine().getRuntimeService().createProcessInstanceByKey("Social-Media-Prozess")
-				.startBeforeActivity("test2").execute();
+	//	ProcessInstance pi = processEngine().getRuntimeService().createProcessInstanceByKey("Testabwicklung")
+	//			.startBeforeActivity("Nachrichtsenden").execute();
 		
-		System.out.println("Prozessinstanz mit der Id "+ pi.getId()+ " gestartet");
+	//	System.out.println("Prozessinstanz mit der Id "+ pi.getId()+ " gestartet");
 
 	}
 

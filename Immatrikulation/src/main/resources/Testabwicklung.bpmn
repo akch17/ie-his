@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_124ss37" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <bpmn:process id="Testabwicklung" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Manueller Start">
+      <bpmn:outgoing>SequenceFlow_0mwh3oe</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0mwh3oe" sourceRef="StartEvent_1" targetRef="Task_1jk9avb" />
+    <bpmn:sendTask id="Nachrichtsenden" name="Benachrichtigung an Bewerber mit &#34;Test&#34; oder &#34;NC mit Test&#34; schicken" camunda:class="learnbpm.example.testauswerten.TestinformationenAnStudentenSendenDelegate">
+      <bpmn:incoming>SequenceFlow_0ht3zl5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_07fg2jz</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="EndEvent_12b3kff" name="Test abgeschlossen">
+      <bpmn:incoming>SequenceFlow_1pcbmq7</bpmn:incoming>
+      <bpmn:messageEventDefinition />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0vgg437" sourceRef="Task_16id447" targetRef="Task_0i5u6q2" />
+    <bpmn:userTask id="Task_16id447" name="Testauswerten" camunda:formKey="embedded:app:forms/Testauswertung.html">
+      <bpmn:incoming>SequenceFlow_07fg2jz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vgg437</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_07fg2jz" sourceRef="Nachrichtsenden" targetRef="Task_16id447" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ht3zl5" sourceRef="Task_1jk9avb" targetRef="Nachrichtsenden" />
+    <bpmn:serviceTask id="Task_1jk9avb" name="Bewerberliste auslesen" camunda:class="learnbpm.example.testauswerten.BewerberlisteMitTestAuslesenDelegate">
+      <bpmn:incoming>SequenceFlow_0mwh3oe</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ht3zl5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1pcbmq7" sourceRef="Task_0i5u6q2" targetRef="EndEvent_12b3kff" />
+    <bpmn:serviceTask id="Task_0i5u6q2" name="Status setzen" camunda:class="learnbpm.example.testauswerten.TestStatusSetzenDelegate">
+      <bpmn:incoming>SequenceFlow_0vgg437</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1pcbmq7</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Testabwicklung">
+      <bpmndi:BPMNShape id="StartEvent_0yghj8m_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="172" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="152" y="142" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0mwh3oe_di" bpmnElement="SequenceFlow_0mwh3oe">
+        <di:waypoint x="208" y="117" />
+        <di:waypoint x="350" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SendTask_01mlurj_di" bpmnElement="Nachrichtsenden">
+        <dc:Bounds x="580" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0mbw6fm_di" bpmnElement="EndEvent_12b3kff">
+        <dc:Bounds x="1182" y="92" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1163" y="135" width="74" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vgg437_di" bpmnElement="SequenceFlow_0vgg437">
+        <di:waypoint x="880" y="117" />
+        <di:waypoint x="990" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0a8v4xu_di" bpmnElement="Task_16id447">
+        <dc:Bounds x="780" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_07fg2jz_di" bpmnElement="SequenceFlow_07fg2jz">
+        <di:waypoint x="680" y="117" />
+        <di:waypoint x="780" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ht3zl5_di" bpmnElement="SequenceFlow_0ht3zl5">
+        <di:waypoint x="450" y="117" />
+        <di:waypoint x="580" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1t9io53_di" bpmnElement="Task_1jk9avb">
+        <dc:Bounds x="350" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1pcbmq7_di" bpmnElement="SequenceFlow_1pcbmq7">
+        <di:waypoint x="1090" y="110" />
+        <di:waypoint x="1182" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_06xpoze_di" bpmnElement="Task_0i5u6q2">
+        <dc:Bounds x="990" y="70" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

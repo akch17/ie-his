@@ -1,0 +1,68 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<body onload="test()">
+<h1>Tests auswerten</h1>
+<h3>Bitte wählen Sie die Bewerber aus, die bestanden haben.</h3>
+<form class="form-horizontal">
+<div id="inputpanel">
+
+ 
+</div>
+
+<div id="selectpanel">
+</div>
+<script cam-script type="text/form-script">
+  var variableManager = camForm.variableManager;
+    camForm.on('form-loaded', function() {
+      // this callback is executed *before* the variables are loaded from the server.
+      // if we declare a variable here, its value will be fetched as well
+      variableManager.fetchVariable("BewerberVorname");
+       variableManager.fetchVariable("BewerberNachname");
+       variableManager.fetchVariable("BewerberIDs");
+    });
+
+    camForm.on('variables-fetched', function() {
+      // this callback is executed *after* the variables have been fetched from the server
+      var BewerberVorname = variableManager.variableValue('BewerberVorname');
+       var BewerberNachname = variableManager.variableValue('BewerberNachname');
+         var BewerberIDs = variableManager.variableValue('BewerberIDs');
+    var div = document.getElementById('selectpanel');
+    
+     
+     var i = 0;
+       div.appendChild(document.createElement("br"));
+	 var keyCount  = Object.keys(BewerberVorname).length;
+		for (i; i < keyCount; i++) {
+	   var x = document.createElement("INPUT");
+	    x.setAttribute("type", "checkbox");
+      	x.setAttribute("value", BewerberIDs[i]);
+		div.innerHTML += "     " + BewerberVorname[i] + "  " + BewerberNachname[i] + "       " ;
+        div.appendChild(x)
+         div.appendChild(document.createElement("br"));
+          div.appendChild(document.createElement("br"));
+     
+	}
+     
+    });
+    camForm.on('submit', function() {
+      // this callback is executed when the form is submitted, *before* the submit request to
+      // the server is executed
+var array = []
+var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+
+for (var i = 0; i < checkboxes.length; i++) {
+  array.push(checkboxes[i].value)
+}
+      // creating a new variable will add it to the form submit
+      variableManager.createVariable({
+        name: 'Bestanden',
+        type: 'Json',
+        value: array ,
+        isDirty: true
+      });
+
+    });
+ 
+</script> 
+</form>
+
+

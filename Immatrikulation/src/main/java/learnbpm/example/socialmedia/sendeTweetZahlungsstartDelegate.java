@@ -34,8 +34,8 @@ public class sendeTweetZahlungsstartDelegate implements JavaDelegate {
 		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der idspieltipp=3 aus der
 		//Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst gibt es eine
 		// Fehlermeldung
-		String sql = "Select AktuellesDatum from his.datum";
-		String sql2 = "SELECT festgelegteZeiten FROM his.datum";
+		String sql = "Select Fristanfang from his.datum";
+		String sql2 = "SELECT Fristende FROM his.datum";
 		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der Konsole zu Debuggingzwecken
 		System.out.println(this.getClass().getName()+": \n"+sql);
 		
@@ -76,7 +76,7 @@ public class sendeTweetZahlungsstartDelegate implements JavaDelegate {
 				String Datum = datumformat.format(Datumstart.get(1));		
 				
 		//Tweetnachricht zusammenstellen
-				String content =   zufallszahl.toString() + "Die Zahlungsfrist beginnt beginnt am "+ Datum + " . Bitte denken Sie daran die Zahlungs rechtzeitig zu tätigen.";
+				String content =   zufallszahl.toString() + "Die Zahlungsfrist beginnt heute, dem "+ Datum + ". Bitte denken Sie daran die Zahlungs rechtzeitig zu tätigen.";
 	 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo", "B28Ze8VDucBdiE38aVQqTxOyPc7eHunxBVv7XgGim4say");

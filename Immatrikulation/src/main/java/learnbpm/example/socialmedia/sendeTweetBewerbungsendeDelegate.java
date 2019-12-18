@@ -34,8 +34,8 @@ public class sendeTweetBewerbungsendeDelegate implements JavaDelegate {
 		// Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst
 		// gibt es eine
 		// Fehlermeldung
-		String sql = "Select AktuellesDatum from his.datum";
-		String sql2 = "SELECT festgelegteZeiten FROM his.datum";
+		String sql = "Select Fristanfang from his.datum";
+		String sql2 = "SELECT Fristende FROM his.datum";
 		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der
 		// Konsole zu Debuggingzwecken
 		System.out.println(this.getClass().getName() + ": \n" + sql);
@@ -73,7 +73,7 @@ public class sendeTweetBewerbungsendeDelegate implements JavaDelegate {
 
 		// Tweetnachricht zusammenstellen
 		String content = zufallszahl.toString() + " Liebe Bewerber, die Bewerbungsfrist endet am " + Datum
-				+ " ! Bitte denkt daran Eure Bewerbungen rechtzeitig zu senden.";
+				+ "! Bitte denken Sie daran Ihre Bewerbungen rechtzeitig zu senden.";
 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo",
