@@ -36,7 +36,6 @@ public class sendeImmatrikulationsbestätigungDelegate implements JavaDelegate {
 		email.addTo(emailadresse);
 
 		email.send();
-
 	}
 
 }

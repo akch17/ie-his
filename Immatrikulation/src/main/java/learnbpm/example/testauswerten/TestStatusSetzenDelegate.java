@@ -13,6 +13,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.spin.json.SpinJsonNode;
 import org.camunda.spin.plugin.variable.value.JsonValue;
 
+
 public class TestStatusSetzenDelegate implements JavaDelegate {
 
 	public TestStatusSetzenDelegate() {
@@ -29,7 +30,7 @@ public class TestStatusSetzenDelegate implements JavaDelegate {
 		Statement stmt = connection.createStatement();
 		// JsonValue aller Bewerber, die Bestanden haben
 		JsonValue  Bestanden =  execution.getVariableTyped("Bestanden");
-	 
+		
 		SpinJsonNode Jsonnode = Bestanden.getValue();
 		// Als Objectarray, um damit besser umzugehen
 		Object[] ArrayBestanden =   Jsonnode.elements().toArray();

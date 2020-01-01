@@ -69,7 +69,7 @@
     <dependency>
       <groupId>org.camunda.bpm</groupId>
       <artifactId>camunda-engine-plugin-spin</artifactId>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
 
     <!-- Required to use Templates in unit tests -->

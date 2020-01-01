@@ -1,7 +1,6 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<body onload="test()">
-<h1>Tests auswerten</h1>
-<h3>Bitte wählen Sie die Bewerber aus, die bestanden haben.</h3>
+<h1>Buchhaltung</h1>
+<h3>Bitte wählen Sie die Bewerber aus, die den Semesterbeitrag bezahlt haben.</h3>
 <form class="form-horizontal">
 <div id="inputpanel">
 
@@ -54,7 +53,7 @@ for (var i = 0; i < checkboxes.length; i++) {
 }
       // creating a new variable will add it to the form submit
       variableManager.createVariable({
-        name: 'Bestanden',
+        name: 'Bezahlt',
         type: 'Json',
         value: array,
         isDirty: true

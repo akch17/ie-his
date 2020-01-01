@@ -1,17 +1,16 @@
-package testdiagramme;
+package ZusaetzlicheArbeit;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-public class ÜberprüfeStatusBestandenDelegate implements JavaDelegate {
+public class ÜberprüfeZahlungDelegate implements JavaDelegate {
 
-	public ÜberprüfeStatusBestandenDelegate() {
+	public ÜberprüfeZahlungDelegate() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,11 +30,11 @@ public class ÜberprüfeStatusBestandenDelegate implements JavaDelegate {
 			ResultSet  res = stmt.executeQuery(sql);
 			res.first();
 			int status = res.getInt(1);
-			 if  (status == 6){
-				 execution.setVariable("bestanden", true);
+			 if  (status == 9){
+				 execution.setVariable("bezahlt", true);
 			 }
 			 else {
-				 execution.setVariable("bestanden", false);
+				 execution.setVariable("bezahöt", false);
 			 }
 		// Datenbank schließen
 		connection.close();
