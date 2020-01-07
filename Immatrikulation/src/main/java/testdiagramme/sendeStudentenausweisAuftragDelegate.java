@@ -7,7 +7,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class sendeStudentenausweisAuftragDelegate implements JavaDelegate {
 	private static final String HOST = "smtp.gmail.com";
-	private static final String USER = "mazlum.taycimen@gmail.com";
+	private static final String USER = "camundaproject12341234@gmail.com";
 	private static final String PWD = "ichwillfort123";
 	private static final Integer PORT = 587;
 	public sendeStudentenausweisAuftragDelegate() {

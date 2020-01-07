@@ -13,7 +13,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class TestinformationenAnStudentenSendenDelegate implements JavaDelegate {
 	private static final String HOST = "smtp.gmail.com";
-	private static final String USER = "mazlum.taycimen@gmail.com";
+	private static final String USER = "camundaproject12341234@gmail.com";
 	private static final String PWD = "ichwillfort123";
 	private static final Integer PORT = 587;
 
@@ -40,7 +40,7 @@ public class TestinformationenAnStudentenSendenDelegate implements JavaDelegate 
 		email.setSubject("Testerinnerung"); //Betreff
 
 		email.setMsg("Lieber Bewerber, bitte denken Sie an Ihren Testtermin. Den Termin könnten Sie auf unserer Internetseite:https://www.testhochschule.de/testtermine entnehmen! Wir wünschen Ihnen viel Erfolg.");
- 
+		
 	//	email.addTo("öäüüÖÄÜ@gmail.com");
 	// 	for (int i = 0; i < emaillist.size() ;i++){
 	// 	email.addTo(emaillist.get(i));

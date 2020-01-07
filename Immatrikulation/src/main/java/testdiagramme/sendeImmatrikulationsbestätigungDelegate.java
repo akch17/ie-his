@@ -7,7 +7,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class sendeImmatrikulationsbestätigungDelegate implements JavaDelegate {
 	private static final String HOST = "smtp.gmail.com";
-	private static final String USER = "mazlum.taycimen@gmail.com";
+	private static final String USER = "camundaproject12341234@gmail.com";
 	private static final String PWD = "ichwillfort123";
 	private static final Integer PORT = 587;
 	public sendeImmatrikulationsbestätigungDelegate() {
@@ -21,6 +21,8 @@ public class sendeImmatrikulationsbestätigungDelegate implements JavaDelegate {
 		 
  String emailadresse =  (String) execution.getVariable("BewerberEmail");
 		//verschiedene Parameter zur Versendung setzen
+ 		// Name auslesen --> PDF-Inhalt sowie Email-Test setzen
+ 		// Dokument generieren
 	 
 		email.setHostName(HOST);
 		email.setAuthentication(USER, PWD);
