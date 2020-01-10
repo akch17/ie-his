@@ -42,7 +42,7 @@ public class VerschickeAblehnungDelegate implements JavaDelegate {
 		// das hier muss weg beim zusammentragen
 		execution.setVariable("BewerberID", 3);
 
-		int BewerberID = (int) execution.getVariable("BewerberID");
+		int BewerberID = (int) execution.getVariable("BewerberId");
 
 		String sql = "select statusID from his.bewerber where BewerberID = " + BewerberID;
 		int StatusID = 0;

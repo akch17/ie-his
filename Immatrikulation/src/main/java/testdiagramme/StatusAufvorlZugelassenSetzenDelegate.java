@@ -16,7 +16,7 @@ public class StatusAufvorlZugelassenSetzenDelegate implements JavaDelegate {
 
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
-	String	sql = "UPDATE `his`.`bewerber` SET `StatusID` = 8  WHERE `BewerberID` = " +   execution.getVariable("BewerberID");
+	String	sql = "UPDATE `his`.`bewerber` SET `StatusID` = 8  WHERE `BewerberID` = " +   execution.getVariable("BewerberId");
 	// Connection zu DB aufbauen; DB-Name: his; user: root; password: root
 	Connection connection;
 

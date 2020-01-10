@@ -20,8 +20,8 @@ public class NcAuswertungStatusDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 
 		
-		//TODO bewerber-ID übergeben
-		int bewerberID = 4;
+		int bewerberID = (int) execution.getVariable("BewerberId");
+		
 		int status = 0;
 		
 		Connection connection;

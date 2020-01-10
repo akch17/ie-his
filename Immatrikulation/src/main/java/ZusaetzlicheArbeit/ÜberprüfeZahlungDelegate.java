@@ -24,7 +24,7 @@ public class ÜberprüfeZahlungDelegate implements JavaDelegate {
 		Statement stmt = connection.createStatement();
 	 
 	String	sql =	"select StatusID from his.bewerber "
-			+ " where his.bewerber.BewerberID = " + execution.getVariable("BewerberID");
+			+ " where his.bewerber.BewerberID = " + execution.getVariable("BewerberId");
 			 		
 	 
 			ResultSet  res = stmt.executeQuery(sql);
@@ -34,7 +34,7 @@ public class ÜberprüfeZahlungDelegate implements JavaDelegate {
 				 execution.setVariable("bezahlt", true);
 			 }
 			 else {
-				 execution.setVariable("bezahöt", false);
+				 execution.setVariable("bezahlt", false);
 			 }
 		// Datenbank schließen
 		connection.close();

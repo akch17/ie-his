@@ -16,7 +16,7 @@ public class TestVariableDelegate implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception {
 		
 		    IntegerValue test = Variables.integerValue(4);
-			execution.setVariable("testBewerberId", test);
+			execution.setVariable("BewerberId", test);
 
 	}
 
