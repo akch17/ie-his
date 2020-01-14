@@ -1,0 +1,44 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+
+<h2>Nachname des Bewerbers</h2>
+
+
+<form role="form"
+      name="variablesForm">
+
+<div class="row">
+
+  <div class="col-xs-6">
+  
+   	<!-- Textarea für Nachname -->
+    <div class="form-group">
+      <label for="inputAddress">Bewerbername</label>
+      <div class="controls">
+        <textarea class="form-control"
+                  cam-variable-name="BewerberNachnameStatus"
+                  cam-variable-type="String"
+                  rows="4"></textarea>
+      </div>
+    </div>
+
+    <div class="control-group">
+				<hr>
+				<label class="control-label" >Sind die Daten des Bewerbers gültig?</label>
+    <div class="controls">
+      <input type="checkbox"
+             cam-variable-name="statusvoll"
+             cam-variable-type="Boolean"
+             class="form-control" />
+    </div>
+  </div>
+
+  </div>
+  
+		
+  </div>
+  
+  <script cam-script type="text/form-script">
+  // custom JavaScript goes here
+  </script>
+</form>

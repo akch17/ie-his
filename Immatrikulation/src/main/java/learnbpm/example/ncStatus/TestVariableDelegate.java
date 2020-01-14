@@ -1,5 +1,10 @@
 package learnbpm.example.ncStatus;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
@@ -17,6 +22,28 @@ public class TestVariableDelegate implements JavaDelegate {
 		
 		    IntegerValue test = Variables.integerValue(4);
 			execution.setVariable("BewerberId", test);
+			execution.setVariable("BewerberName", "TestName");
+			execution.setVariable("BewerberEmail", "BewerberEmail");
+			execution.setVariable("Matrikelnummer", 123456);
+			int bewerberID = (int) execution.getVariable("BewerberId");
+			
+			
+			String zulassungsBezeichnung;
+			Connection connection;
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root");
+
+			String sql = "select sz.zulassungsbezeichnung from studiengangszulassung sz JOIN studiengang s "
+					+ " on s.zulassungsID = sz.ZulassungsID "
+					+ " JOIN bewerber b "
+					+ " on b.StudiengangID = s.StudiengangID " 
+					+ " where b.BewerberID = " +  bewerberID + " ";
+			System.out.println(sql);
+			Statement stmt = connection.createStatement();
+
+			ResultSet res = stmt.executeQuery(sql);
+			res.first();
+			zulassungsBezeichnung = (String) res.getObject(1);
+			execution.setVariable("zulassungsBezeichnung", zulassungsBezeichnung);
 
 	}
 
