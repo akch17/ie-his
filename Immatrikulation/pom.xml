@@ -173,20 +173,7 @@
   	<dependency>
   		<groupId>com.itextpdf</groupId>
   		<artifactId>itextpdf</artifactId>
-  		<scope>provided</scope>
   		<version>5.5.13.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.apache.pdfbox</groupId>
-  		<artifactId>pdfbox</artifactId>
-  		<scope>provided</scope>
-  		<version>2.0.18</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.bouncycastle</groupId>
-  		<artifactId>bcprov-jdk15on</artifactId>
-  		<scope>provided</scope>
-  		<version>1.56</version>
   	</dependency>
   </dependencies>
 

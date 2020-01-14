@@ -12,8 +12,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -74,8 +72,8 @@ public class SendeEmailMitDokumentDelegate implements JavaDelegate {
 
 		email.setFrom("camundaproject12341234@gmail.com"); // Replyadresse angeben
 		email.setSubject("Aufnahmeerklärung"); // Betreff
-
-		email.addTo("camundaproject12341234@gmail.com");
+ 
+		email.addTo((String) execution.getVariable("BewerberEmail"));
 		email.send();
 
 	}

@@ -15,7 +15,7 @@ import org.camunda.spin.plugin.variable.value.JsonValue;
 
 
 public class TestStatusSetzenDelegate implements JavaDelegate {
-
+// Status für Test setzen
 	public TestStatusSetzenDelegate() {
 		// TODO Auto-generated constructor stub
 	}

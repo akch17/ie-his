@@ -29,11 +29,11 @@ public class sendeStudentenausweisAuftragDelegate implements JavaDelegate {
  
 	 
 	 
-		email.setFrom("mazlum.taycimen@gmail.com"); // Replyadresse angeben
+		email.setFrom("camundaproject12341234@gmail.com"); // Replyadresse angeben
 		email.setSubject("Bitte Ausweis drucken"); //Betreff
 
-		email.setMsg("Hallo Prüfungsamt, bitte drucken Sie den Ausweis für den Studenten mit der Matrikelnummer: " + "hier die Matrikelnummer" + ".");
-		email.addTo("Pruefungsamt@testhochschule.de");
+		email.setMsg("Hallo Prüfungsamt, bitte drucken Sie den Ausweis für den Studenten mit der Matrikelnummer: " + execution.getVariable("Matrikelnummer") + ".");
+		email.addTo("camundaproject12341234@gmail.com");
 
 		email.send();
 

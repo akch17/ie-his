@@ -12,7 +12,7 @@ import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 
 public class SelectFuerBuchhaltungDelegate implements JavaDelegate {
-
+// Select alle "vorläufig zugelassen" und setze Id, Vorname, Name
 	public SelectFuerBuchhaltungDelegate() {
 		// TODO Auto-generated constructor stub
 	}
