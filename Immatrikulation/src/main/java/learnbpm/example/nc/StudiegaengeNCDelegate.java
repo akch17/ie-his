@@ -27,6 +27,8 @@ public class StudiegaengeNCDelegate implements JavaDelegate {
 		Connection connection;
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root");
 
+		//TODO
+		//status überprüfen?
 		String sql = "Select s.StudiengangID from studiengangszulassung z join studiengang s on z.ZulassungsID = s.ZulassungsID where z.ZulassungsID = 3 or z.ZulassungsID = 4;";
 		System.out.println(sql);
 		Statement stmt = connection.createStatement();
@@ -93,9 +95,11 @@ public class StudiegaengeNCDelegate implements JavaDelegate {
 				stmtStatus.executeUpdate(sqlStatus);
 			}
 			
-			connection.close();
+		
 		}
 
+		connection.close();
+		
 	}
 
 }

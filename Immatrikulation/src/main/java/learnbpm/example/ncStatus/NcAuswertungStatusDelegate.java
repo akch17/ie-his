@@ -22,6 +22,7 @@ public class NcAuswertungStatusDelegate implements JavaDelegate {
 		
 		int bewerberID = (int) execution.getVariable("BewerberId");
 		
+		//TODO
 		int status = 0;
 		
 		Connection connection;
@@ -35,6 +36,8 @@ public class NcAuswertungStatusDelegate implements JavaDelegate {
 		boolean nc;
 		res.first();
 		status = (Integer) res.getObject(1);
+		//TODO
+		status = 4;
 		System.out.println("TEEEEEEEEEEEEEEEEEEEEEEEST");
 		if (status == 4) { //Note ausreichend
 		    nc = true; 
