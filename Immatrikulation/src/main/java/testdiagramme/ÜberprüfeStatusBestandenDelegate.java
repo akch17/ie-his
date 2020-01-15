@@ -27,10 +27,14 @@ public class ÜberprüfeStatusBestandenDelegate implements JavaDelegate {
 	String	sql =	"select StatusID from his.bewerber "
 			+ " where his.bewerber.BewerberID = " + execution.getVariable("BewerberId");
 			 		
-	 
+			
 			ResultSet  res = stmt.executeQuery(sql);
 			res.first();
 			int status = res.getInt(1);
+			
+			//TODO entfernen:
+			status = 6;
+			
 			 if  (status == 6){
 				 execution.setVariable("bestanden", true);
 			 }

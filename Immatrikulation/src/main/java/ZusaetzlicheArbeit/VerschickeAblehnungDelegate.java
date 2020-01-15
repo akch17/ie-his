@@ -39,8 +39,7 @@ public class VerschickeAblehnungDelegate implements JavaDelegate {
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root");
 
 		Statement stmt = connection.createStatement();
-		// das hier muss weg beim zusammentragen
-		execution.setVariable("BewerberID", 3);
+		
 
 		int BewerberID = (int) execution.getVariable("BewerberId");
 
@@ -64,7 +63,7 @@ public class VerschickeAblehnungDelegate implements JavaDelegate {
 		Email email = new SimpleEmail();
 		
 		// das hier löschen beim zusammenführen
-		execution.setVariable("BewerberEmail", "mazlum.taycimen@gmail.com");
+		execution.setVariable("BewerberEmail", "camundaproject12341234@gmail.com");
 		
 		String emailadresse = (String) execution.getVariable("BewerberEmail");
 		// verschiedene Parameter zur Versendung setzen
@@ -74,7 +73,7 @@ public class VerschickeAblehnungDelegate implements JavaDelegate {
 		email.setSmtpPort(PORT);
 		email.setSSLOnConnect(true);
 
-		email.setFrom("mazlum.taycimen@gmail.com"); // Replyadresse angeben
+		email.setFrom("camundaproject12341234@gmail.com"); // Replyadresse angeben
 		email.setSubject("Ablehnung"); // Betreff
 
 		email.setMsg(Ablehnungsgrund);

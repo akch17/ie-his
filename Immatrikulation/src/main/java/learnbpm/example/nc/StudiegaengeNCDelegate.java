@@ -93,6 +93,7 @@ public class StudiegaengeNCDelegate implements JavaDelegate {
 				stmtStatus.executeUpdate(sqlStatus);
 			}
 			
+			connection.close();
 		}
 
 	}

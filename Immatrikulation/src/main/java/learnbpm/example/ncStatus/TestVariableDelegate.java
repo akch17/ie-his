@@ -23,9 +23,11 @@ public class TestVariableDelegate implements JavaDelegate {
 		    IntegerValue test = Variables.integerValue(4);
 			execution.setVariable("BewerberId", test);
 			execution.setVariable("BewerberName", "TestName");
-			execution.setVariable("BewerberEmail", "BewerberEmail");
+			execution.setVariable("BewerberEmail", "camundaproject12341234@gmail.com");
 			execution.setVariable("Matrikelnummer", 123456);
 			int bewerberID = (int) execution.getVariable("BewerberId");
+			bewerberID = 3;
+			execution.setVariable("BewerberId", bewerberID);
 			
 			
 			String zulassungsBezeichnung;

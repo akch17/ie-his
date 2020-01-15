@@ -23,6 +23,7 @@ public class SendeAufnahmeerklaerung implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
+		/*
 		System.out.println("Aufnahmeschreiben senden");
 		GeneriereAufnahmeerklaerung schreiben = new GeneriereAufnahmeerklaerung();
 		String name = (String) execution.getVariable("BewerberNachnameStatus");
@@ -47,6 +48,8 @@ public class SendeAufnahmeerklaerung implements JavaDelegate {
 		email.addTo(USER);
 
 		email.send();
+		
+		*/
 		}
 
 	}

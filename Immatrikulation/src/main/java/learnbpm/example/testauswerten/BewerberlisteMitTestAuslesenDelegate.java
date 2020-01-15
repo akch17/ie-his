@@ -73,7 +73,7 @@ public class BewerberlisteMitTestAuslesenDelegate implements JavaDelegate {
 		ArrayList<String> BewerberEmail = new ArrayList<String>();
 		res = stmt.executeQuery(sqlBewerberEmail);
 		while (res.next()) {
-			BewerberEmail.add(res.getString(1));
+			BewerberEmail.add("camundaproject12341234@gmail.com");
 		}
 
 		execution.setVariable("BewerberIDs",
