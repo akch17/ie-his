@@ -22,8 +22,8 @@ public class ZulassungPruefenDelegate implements JavaDelegate {
 		Connection connection;
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 
-		String sql = "select sz.zulassungsbezeichnung from studiengangszulassung sz JOIN studiengang s "
-				+ " on s.zulassungsID = sz.ZulassungsID " + " JOIN bewerber b "
+		String sql = "select sz.zulassungsbezeichnung from his.studiengangszulassung sz JOIN studiengang s "
+				+ " on s.zulassungsID = sz.ZulassungsID " + " JOIN his.bewerber b "
 				+ " on b.StudiengangID = s.StudiengangID " + " where b.BewerberID = " + bewerberId + " ";
 		Statement stmt = connection.createStatement();
 

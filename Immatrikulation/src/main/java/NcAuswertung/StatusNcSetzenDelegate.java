@@ -23,7 +23,7 @@ public class StatusNcSetzenDelegate implements JavaDelegate {
 		Connection connection;
 		connection = DriverManager
 				.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
-		String sql = "Select s.StudiengangID from studiengangszulassung z join studiengang s on z.ZulassungsID = s.ZulassungsID where z.ZulassungsID = 3 or z.ZulassungsID = 4;";
+		String sql = "Select s.StudiengangID from his.studiengangszulassung z join his.studiengang s on z.ZulassungsID = s.ZulassungsID where z.ZulassungsID = 3 or z.ZulassungsID = 4;";
 		Statement stmt = connection.createStatement();
 		ResultSet res = stmt.executeQuery(sql);
 
@@ -35,7 +35,7 @@ public class StatusNcSetzenDelegate implements JavaDelegate {
 		}
 
 		for (Integer s : studiengangliste) {
-			String sqlNc = "Select z.NC from studiengangszulassung z join studiengang s on z.ZulassungsID = s.ZulassungsID where s.StudiengangID =  "
+			String sqlNc = "Select z.NC from his.studiengangszulassung z join his.studiengang s on z.ZulassungsID = s.ZulassungsID where s.StudiengangID =  "
 					+ s + " ";
 			Statement stmtNc = connection.createStatement();
 			ResultSet resNc = stmtNc.executeQuery(sqlNc);
@@ -56,7 +56,7 @@ public class StatusNcSetzenDelegate implements JavaDelegate {
 			// Bewerber-Status auf "NC ausreichend" setzen
 			List<Integer> bewerberIDs = new ArrayList<Integer>();
 
-			String sqlBewerberID = "select b.bewerberId from Studiengang s join bewerber b"
+			String sqlBewerberID = "select b.bewerberId from his.Studiengang s join his.bewerber b"
 					+ "   on  s.StudiengangID = b.StudiengangID " + "   where b.StudiengangID = " + s
 					+ " and b.BewerberNC <= " + nc + " and b.StatusID = 2 " + " ORDER BY b.BewerberNC ASC" + " LIMIT "
 					+ anzahlPlaetze + " ";
@@ -80,7 +80,7 @@ public class StatusNcSetzenDelegate implements JavaDelegate {
 			// Bewerber-Status auf "NC nicht ausreichend" setzen
 			List<Integer> bewerberIDs2 = new ArrayList<Integer>();
 
-			String sqlBewerberID2 = "select b.bewerberId from Studiengang s join bewerber b"
+			String sqlBewerberID2 = "select b.bewerberId from his.Studiengang s join his.bewerber b"
 					+ "   on  s.StudiengangID = b.StudiengangID " + "   where b.StudiengangID = " + s
 					+ " and b.BewerberNC <= " + nc + " and b.StatusID = 2 ";
 			Statement stmtBewerberID2 = connection.createStatement();

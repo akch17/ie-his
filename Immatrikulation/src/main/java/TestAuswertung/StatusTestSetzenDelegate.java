@@ -36,9 +36,10 @@ public class StatusTestSetzenDelegate implements JavaDelegate {
 
 		String sql;
 		// alle Bewerber die bestanden haben auf Status 6 bestanden setzen
-		//TODO sql bedingung status = 2 hinzufügen
 		for (int i = 0; i < ArrayBestanden.length; i++) {
-			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 6  WHERE `BewerberID` = " + ArrayBestanden[i];
+			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 6  WHERE `BewerberID` = " + ArrayBestanden[i]
+			+ " and his.bewerber.StatusID = 2 or his.bewerber.StatusID = 4";
+			
 			// Ausführen des Updates auf der DB
 			stmt.executeUpdate(sql);
 		}
@@ -48,20 +49,19 @@ public class StatusTestSetzenDelegate implements JavaDelegate {
 		sql = "SELECT BewerberID "
 				+ " FROM his.bewerber JOIN his.studiengang ON his.bewerber.StudiengangID = his.studiengang.StudiengangID join his.studiengangszulassung on his.studiengang.ZulassungsID = his.studiengangszulassung.ZulassungsID"
 				+ " where (his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4)"
-				+ " and his.bewerber.StatusID <> 6";
+				+ " and his.bewerber.StatusID = 2 or his.bewerber.StatusID = 4";
 		ArrayList<String> DurchgefallenID = new ArrayList<String>();
 		ResultSet res = stmt.executeQuery(sql);
 		
 		while (res.next()) {
 			DurchgefallenID.add(res.getString(1));
 		}
-		//TODO Nullabfangen
+		if(!DurchgefallenID.isEmpty()){
 		for (int i = 0; i < DurchgefallenID.size(); i++) {
-			//TODO sql bedingung status = 2 hinzufügen
 			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 7  WHERE `BewerberID` = " + DurchgefallenID.get(i);
 			stmt.executeUpdate(sql);
 		}
-		
+		}
 
 		// Datenbank schließen
 		connection.close();

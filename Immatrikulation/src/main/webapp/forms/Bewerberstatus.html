@@ -4,161 +4,127 @@
 <h2>Bewerberdaten überprüfen</h2>
 
 
-<form role="form"
-      name="variablesForm">
+<form role="form" name="variablesForm">
 
-<div class="row">
+	<div class="row">
 
-  <div class="col-xs-6">
-  
-<div class="control-group">
-  <label class="control-label">Vorname</label>
-  <div class="controls">
-  <!--
+		<div class="col-xs-6">
+
+			<div class="control-group">
+				<label class="control-label">Vorname</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberVorname"
-           cam-variable-type="String"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label">Nachname</label>
-  <div class="controls">
-  <!--
+					<input type="text" cam-variable-name="BewerberVorname"
+						cam-variable-type="String" readonly="true" class="form-control" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Nachname</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberNachname"
-           cam-variable-type="String"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label">Adresse</label>
-  <div class="controls">
-  <!--
+					<input type="text" cam-variable-name="BewerberNachname"
+						cam-variable-type="String" readonly="true" class="form-control" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Adresse</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberAdresse"
-           cam-variable-type="String"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label">PLZ</label>
-  <div class="controls">
-  <!--
+					<input type="text" cam-variable-name="BewerberAdresse"
+						cam-variable-type="String" readonly="true" class="form-control" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">PLZ</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberPLZ"
-           cam-variable-type="Integer"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label">Email</label>
-  <div class="controls">
-  <!--
+					<input type="text" cam-variable-name="BewerberPLZ"
+						cam-variable-type="Integer" readonly="true" class="form-control" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Email</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberEmail"
-           cam-variable-type="String"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
-<div class="control-group">
-  <label class="control-label">NC</label>
-  <div class="controls">
-  <!--
+					<input type="text" cam-variable-name="BewerberEmail"
+						cam-variable-type="String" readonly="true" class="form-control" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">NC</label>
+				<div class="controls">
+					<!--
   Erfassung des Tippernamens und Speichern in der Prozessvariable name
   camunda-ID der  Variable  über  cam-variable-name
   camunda-Type der Varibale über  cam-variable-type; Datentypen immer Anfangsbuchstaben groß
       -->
-    <input type="text"
-           cam-variable-name="BewerberNc"
-           cam-variable-type="Double"
-           readonly="true"
-           class="form-control" />
-  </div>
-</div>
+					<input type="text" cam-variable-name="BewerberNc"
+						cam-variable-type="Double" readonly="true" class="form-control" />
+				</div>
+			</div>
 
-<div class="col-xs-6">
+			<div class="col-xs-6">
 
-  <!-- Control zum Upload einer Datei -->
+				<!-- Control zum Upload einer Datei 
 
-
-
-
-
-<div class="control-group">
-  <label class="control-label">Passbild (max. 1 Datei, max. 2 MB) </label>
-  <div class="controls">
-
-<input type="file"
-     cam-variable-name="BewerberPassbild"
-     cam-variable-type="File"
-     cam-max-filesize="2000000" />
-     </div>
-  </div>
-  <div class="control-group">
-  <label class="control-label">Zeugnis (max. 1 Datei, max. 2 MB) </label>
-  <div class="controls">
-
-<input type="file"
-     cam-variable-name="BewerberZeugnis"
-     cam-variable-type="File"
-     cam-max-filesize="2000000" />
-     </div>
-  </div>
-  <div class="control-group">
-  <label class="control-label">Lebenslauf (max. 1 Datei, max. 2 MB) </label>
-  <div class="controls">
-
-<input type="file"
-     cam-variable-name="BewerberLebenslauf"
-     cam-variable-type="File"
-     cam-max-filesize="2000000" />
-     </div>
-  </div>
-</div>
-
-    <div class="control-group">
-				<hr>
-				<label class="control-label" >Sind die Daten des Bewerbers gültig?</label>
-    <div class="controls">
-      <input type="checkbox"
-             cam-variable-name="statusvoll"
-             cam-variable-type="Boolean"
-             class="form-control" />
+  <div class="form-group">
+    <label class="control-label col-md-2">Passbild</label>
+    <div class="form-control-static col-md-10">
+      <a cam-file-download="BewerberPassbild"></a>
     </div>
   </div>
 
+  <div class="form-group">
+    <label class="control-label col-md-2">Zeugnis</label>
+    <div class="form-control-static col-md-10">
+      <a cam-file-download="BewerberZeugnis"></a>
+    </div>
   </div>
-  
-		
+
+
+  <div class="form-group">
+    <label class="control-label col-md-2">Lebenslauf</label>
+    <div class="form-control-static col-md-10">
+      <a cam-file-download="BewerberLebenslauf"></a>
+    </div>
   </div>
-  
-  <script cam-script type="text/form-script">
+-->
+				<div class="control-group">
+					<hr>
+					<label class="control-label">Sind die Daten des Bewerbers
+						gültig?</label>
+					<div class="controls">
+						<input type="checkbox" cam-variable-name="statusvoll"
+							cam-variable-type="Boolean" class="form-control" />
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<script cam-script type="text/form-script">
   // custom JavaScript goes here
   </script>
 </form>

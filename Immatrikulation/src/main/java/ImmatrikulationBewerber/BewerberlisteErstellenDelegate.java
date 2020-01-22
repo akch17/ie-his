@@ -34,7 +34,6 @@ public class BewerberlisteErstellenDelegate implements JavaDelegate {
 		Integer bewerber = (Integer) res.getObject(1);
 		bewerberliste.put(bewerber.toString(), bewerber.toString());
 		
-		//TODO was wenn result = null?
 		while (res.next()) {
 			bewerber = (Integer) res.getObject(1);
 			bewerberliste.put(bewerber.toString(), bewerber.toString());

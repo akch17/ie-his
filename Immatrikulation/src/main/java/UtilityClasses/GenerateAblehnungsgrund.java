@@ -2,7 +2,7 @@ package UtilityClasses;
 
 public class GenerateAblehnungsgrund {
 
-	public String GenerateAblehnungsgrund(int Status) {
+	public String AblehungsgrundGenerieren(int Status) {
 		 
 		
 		switch (Status){
@@ -32,7 +32,7 @@ public class GenerateAblehnungsgrund {
 
 	public static void main(String[] args) {
 		GenerateAblehnungsgrund Ablehnung = new GenerateAblehnungsgrund();
-		System.out.println(Ablehnung.GenerateAblehnungsgrund(35));
+		System.out.println(Ablehnung.AblehungsgrundGenerieren(35));
 	}
 
 }

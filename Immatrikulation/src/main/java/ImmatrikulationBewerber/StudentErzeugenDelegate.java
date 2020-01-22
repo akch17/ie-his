@@ -94,7 +94,7 @@ public class StudentErzeugenDelegate implements JavaDelegate {
 			student.executeUpdate();
 		}
 		
-		String sqlDelete = "DELETE FROM bewerber WHERE bewerberid = " + execution.getVariable("BewerberId");
+		String sqlDelete = "DELETE FROM his.bewerber WHERE bewerberid = " + execution.getVariable("BewerberId");
 		Statement statementDelete = connection.createStatement();
 		statementDelete.executeUpdate(sqlDelete);
 		execution.setVariable("statusID" , 3);

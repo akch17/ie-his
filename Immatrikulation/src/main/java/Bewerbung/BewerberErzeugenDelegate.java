@@ -9,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Random;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -25,11 +24,11 @@ public class BewerberErzeugenDelegate implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 
-		FileValue lebenslaufDoc = execution.getVariableTyped("LEBENSLAUF_DOC");
+		FileValue lebenslaufDoc = execution.getVariableTyped("BewerberLebenslauf");
 		InputStream lebenslauf = lebenslaufDoc.getValue();
-		FileValue zeugnisDoc = execution.getVariableTyped("ZEUGNIS_DOC");
+		FileValue zeugnisDoc = execution.getVariableTyped("BewerberZeugnis");
 		InputStream zeugnis = zeugnisDoc.getValue();
-		FileValue passbildDoc = execution.getVariableTyped("PASSBILD_DOC");		
+		FileValue passbildDoc = execution.getVariableTyped("BewerberPassbild");		
 		InputStream passbild = passbildDoc.getValue();
 				
 		
@@ -100,9 +99,9 @@ public class BewerberErzeugenDelegate implements JavaDelegate {
 		
 		
 		
-		dateiAbspeichern(lebenslauf);
-		dateiAbspeichern(passbild);
-		dateiAbspeichern(zeugnis);
+		dateiAbspeichern(lebenslauf, "Lebenslauf");
+		dateiAbspeichern(passbild, "Passbild");
+		dateiAbspeichern(zeugnis, "Zeugnis");
 		
 		
 		try {
@@ -115,23 +114,20 @@ public class BewerberErzeugenDelegate implements JavaDelegate {
 		execution.setVariable("BewerberId", id);
 	}
 	
-	public void dateiAbspeichern(InputStream inputstream){
+	public void dateiAbspeichern(InputStream inputstream, String datei){
 		try {
 			inputstream.reset();
 		byte[] buffer = new byte[inputstream.available()];
 		inputstream.read(buffer);
-		Random r = new Random();
-		Integer i = r.nextInt();
-		String zufall = i.toString();
 		
-		String dateiUndPfad = "/test/bewerber_ID"+id+"_"+zufall+".pdf";
+		String dateiUndPfad = "/test/Bewerber_ID"+id+"_"+datei+".pdf";
 		File zielDatei = new File(dateiUndPfad);
 		FileOutputStream out = new FileOutputStream(zielDatei);
 		out.write(buffer);
 		out.close();
 		
 		} catch (IOException e) {
-			System.out.println("Datei konnte nicht abgespeichert werden");
+			System.out.println("Die Datei " + datei + " vom Bewerber mit der ID " + id + " konnte nicht abgespeichert werden");
 			e.printStackTrace();
 		}
 	}

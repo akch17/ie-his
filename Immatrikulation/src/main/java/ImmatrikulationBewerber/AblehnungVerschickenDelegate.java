@@ -52,7 +52,7 @@ public class AblehnungVerschickenDelegate implements JavaDelegate {
 		// Nun den Ablehnungsgrund generieren
 		String Ablehnungsgrund;
 		GenerateAblehnungsgrund ablehnung = new GenerateAblehnungsgrund();
-		Ablehnungsgrund = ablehnung.GenerateAblehnungsgrund(StatusID);
+		Ablehnungsgrund = ablehnung.AblehungsgrundGenerieren(StatusID);
 
 		// Nun Email erzeugen
 		// Emailinstanz erzeugen

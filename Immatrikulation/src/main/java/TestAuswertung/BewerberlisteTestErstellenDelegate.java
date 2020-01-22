@@ -33,7 +33,9 @@ public class BewerberlisteTestErstellenDelegate implements JavaDelegate {
 		String sqlBewerberID = "SELECT BewerberID FROM his.bewerber" + " JOIN his.studiengang ON "
 				+ " his.bewerber.StudiengangID = his.studiengang.StudiengangID"
 				+ " join his.studiengangszulassung on his.studiengang.ZulassungsID = his.studiengangszulassung.ZulassungsID"
-				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4";
+				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4"
+				+ " and his.bewerber.StatusID = 2  or his.bewerber.StatusID = 4";
+
 
 		// Ausführen des Selects auf der DB
 		ResultSet res = stmt.executeQuery(sqlBewerberID);
@@ -48,8 +50,11 @@ public class BewerberlisteTestErstellenDelegate implements JavaDelegate {
 		String sqlBewerberVorname = "SELECT  BewerberVorname FROM his.bewerber" + " JOIN his.studiengang ON "
 				+ " his.bewerber.StudiengangID = his.studiengang.StudiengangID"
 				+ " join his.studiengangszulassung on his.studiengang.ZulassungsID = his.studiengangszulassung.ZulassungsID"
-				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4";
+				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4"
+				+ " and his.bewerber.StatusID = 2  or his.bewerber.StatusID = 4";
 
+		
+		System.out.println(sqlBewerberVorname);
 		ArrayList<String> BewerberVorname = new ArrayList<String>();
 		res = stmt.executeQuery(sqlBewerberVorname);
 		while (res.next()) {
@@ -58,7 +63,8 @@ public class BewerberlisteTestErstellenDelegate implements JavaDelegate {
 		String sqlBewerberNachname = "SELECT  BewerberNachname FROM his.bewerber" + " JOIN his.studiengang ON "
 				+ " his.bewerber.StudiengangID = his.studiengang.StudiengangID"
 				+ " join his.studiengangszulassung on his.studiengang.ZulassungsID = his.studiengangszulassung.ZulassungsID"
-				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4";
+				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4"
+		+ " and his.bewerber.StatusID = 2  or his.bewerber.StatusID = 4";
 
 		ArrayList<String> BewerberNachname = new ArrayList<String>();
 		res = stmt.executeQuery(sqlBewerberNachname);
@@ -69,7 +75,8 @@ public class BewerberlisteTestErstellenDelegate implements JavaDelegate {
 		String sqlBewerberEmail = "SELECT  BewerberEmail FROM his.bewerber" + " JOIN his.studiengang ON "
 				+ " his.bewerber.StudiengangID = his.studiengang.StudiengangID"
 				+ " join his.studiengangszulassung on his.studiengang.ZulassungsID = his.studiengangszulassung.ZulassungsID"
-				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4";
+				+ " where his.studiengang.ZulassungsID = 2  or his.studiengang.ZulassungsID = 4"
+				+ " and his.bewerber.StatusID = 2  or his.bewerber.StatusID = 4";
 
 		ArrayList<String> BewerberEmail = new ArrayList<String>();
 		res = stmt.executeQuery(sqlBewerberEmail);

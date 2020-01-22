@@ -48,12 +48,13 @@ public class StatusBuchhaltungSetzenDelegate implements JavaDelegate {
 		while (res.next()) {
 			NichtbezahltID.add(res.getString(1));
 		}
-//TODO   -- Nullabfangen 
+
+		if(!NichtbezahltID.isEmpty()) {
 		for (int i = 0; i < NichtbezahltID.size(); i++) {
-			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 7  WHERE `BewerberID` = " + NichtbezahltID.get(i);
+			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 10  WHERE `BewerberID` = " + NichtbezahltID.get(i);
 			stmt.executeUpdate(sql);
 		}
-
+		}
 		// Datenbank schließen
 		connection.close();
 
