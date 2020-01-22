@@ -48,7 +48,7 @@ public class AufnahmeErklaerungSendenDelegate implements JavaDelegate {
 		byte[] bytes = outputStream.toByteArray();
 
 		MimeBodyPart textBodyPart = new MimeBodyPart();
-		textBodyPart.setText("Hallo " + execution.getVariable("BewerberName")
+		textBodyPart.setText("Hallo " + execution.getVariable("BewerberNachname")
 				+ ", im Anhang finden Sie die Aufnahmeerklärung für ihr Studium.");
 
 		DataSource dataSource = new ByteArrayDataSource(bytes, "application/pdf");

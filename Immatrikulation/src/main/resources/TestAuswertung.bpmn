@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_124ss37" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
-  <bpmn:process id="Testabwicklung" isExecutable="true">
+  <bpmn:process id="Testabwicklung" isExecutable="true" camunda:candidateStarterGroups="Zulassungspruefer">
     <bpmn:startEvent id="StartEvent_1" name="Manueller Start">
       <bpmn:outgoing>SequenceFlow_0mwh3oe</bpmn:outgoing>
     </bpmn:startEvent>
@@ -10,7 +10,7 @@
       <bpmn:outgoing>SequenceFlow_07fg2jz</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_0vgg437" sourceRef="Task_16id447" targetRef="Task_0i5u6q2" />
-    <bpmn:userTask id="Task_16id447" name="Testauswerten" camunda:formKey="embedded:app:forms/Testauswertung.html">
+    <bpmn:userTask id="Task_16id447" name="Testauswerten" camunda:formKey="embedded:app:forms/Testauswertung.html" camunda:candidateGroups="Zulassungspruefer">
       <bpmn:incoming>SequenceFlow_07fg2jz</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vgg437</bpmn:outgoing>
     </bpmn:userTask>

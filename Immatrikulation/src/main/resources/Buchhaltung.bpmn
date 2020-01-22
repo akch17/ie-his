@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0vfvw1g" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
-  <bpmn:process id="Buchhaltung" isExecutable="true">
+  <bpmn:process id="Buchhaltung" isExecutable="true" camunda:candidateStarterGroups="buchhaltung">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>SequenceFlow_1fyr4zl</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Task_0158fej" name="Zahlungsstatus setzen" camunda:formKey="embedded:app:forms/Buchhaltung.html">
+    <bpmn:userTask id="Task_0158fej" name="Zahlungsstatus setzen" camunda:formKey="embedded:app:forms/Buchhaltung.html" camunda:candidateGroups="buchhaltung">
       <bpmn:incoming>SequenceFlow_1ti0zn6</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1xr0vz9</bpmn:outgoing>
     </bpmn:userTask>

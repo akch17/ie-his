@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_10dgw71" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
-  <bpmn:process id="Bewerbungsprozess" isExecutable="true">
+  <bpmn:process id="Bewerbungsprozess" isExecutable="true" camunda:candidateStarterGroups="bewerber">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>SequenceFlow_13ykkr3</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_13ykkr3" sourceRef="StartEvent_1" targetRef="Bewerbungsprozess1" />
     <bpmn:sequenceFlow id="SequenceFlow_1trkn27" sourceRef="Bewerbungsprozess2" targetRef="UserTask_139r8ys" />
-    <bpmn:userTask id="Bewerbungsprozess2" name="Studiengang auswählen" camunda:formKey="embedded:app:forms/StudiengangAuswahl.html">
+    <bpmn:userTask id="Bewerbungsprozess2" name="Studiengang auswählen" camunda:formKey="embedded:app:forms/StudiengangAuswahl.html" camunda:candidateGroups="bewerber">
       <bpmn:incoming>SequenceFlow_05bl162</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1trkn27</bpmn:outgoing>
     </bpmn:userTask>
@@ -15,7 +15,7 @@
       <bpmn:incoming>SequenceFlow_13ykkr3</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05bl162</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="UserTask_139r8ys" name="Unterlagen ausfüllen und Dokumente hochladen" camunda:formKey="embedded:app:forms/BewerbungErstellen.html">
+    <bpmn:userTask id="UserTask_139r8ys" name="Unterlagen ausfüllen und Dokumente hochladen" camunda:formKey="embedded:app:forms/BewerbungErstellen.html" camunda:candidateGroups="bewerber">
       <bpmn:incoming>SequenceFlow_1trkn27</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_05e8id7</bpmn:outgoing>
     </bpmn:userTask>
