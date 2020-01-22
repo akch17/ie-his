@@ -36,19 +36,19 @@
       <bpmn:outgoing>SequenceFlow_0ubsvlr</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_0nr7wuj</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_05u8w2c" name="NC" sourceRef="ExclusiveGateway_1r0aazg" targetRef="IntermediateCatchEvent_01te5te">
+    <bpmn:sequenceFlow id="SequenceFlow_05u8w2c" name="NC/NC mit Test" sourceRef="ExclusiveGateway_1r0aazg" targetRef="IntermediateCatchEvent_01te5te">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'NC' || zulassungsBezeichnung == 'NC mit Test'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:exclusiveGateway id="ExclusiveGateway_0dzeg7x">
       <bpmn:incoming>SequenceFlow_0ubsvlr</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_1hbmtoh</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0c2ov56</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_16zmlpc</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ehq5nv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_0ubsvlr" name="unbeschränkt" sourceRef="ExclusiveGateway_1r0aazg" targetRef="ExclusiveGateway_0dzeg7x">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'unbeschränkt'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0nr7wuj" name="Test" sourceRef="ExclusiveGateway_1r0aazg" targetRef="IntermediateThrowEvent_1cypw2a">
+    <bpmn:sequenceFlow id="SequenceFlow_0nr7wuj" name="Test" sourceRef="ExclusiveGateway_1r0aazg" targetRef="ExclusiveGateway_1wz6gbz">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'Test'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="ServiceTask_1pkr8xr" name="Teststatus auswerten" camunda:class="ImmatrikulationBewerber.TestAuswertungPruefenDelegate">
@@ -194,7 +194,7 @@
       <bpmn:messageEventDefinition messageRef="Message_0wbsar7" />
     </bpmn:intermediateCatchEvent>
     <bpmn:intermediateCatchEvent id="IntermediateThrowEvent_1cypw2a">
-      <bpmn:incoming>SequenceFlow_0nr7wuj</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_11yfm2d</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1npcvlu</bpmn:outgoing>
       <bpmn:messageEventDefinition messageRef="Message_12fo2rw" />
     </bpmn:intermediateCatchEvent>
@@ -217,7 +217,7 @@
       <bpmn:outgoing>SequenceFlow_0c2ov56</bpmn:outgoing>
       <bpmn:script>print("Der NC des Bewerbers ist ausreichend")</bpmn:script>
     </bpmn:scriptTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0c2ov56" sourceRef="Task_1auk5h2" targetRef="ExclusiveGateway_0dzeg7x" />
+    <bpmn:sequenceFlow id="SequenceFlow_0c2ov56" sourceRef="Task_1auk5h2" targetRef="ExclusiveGateway_0ht8bwb" />
     <bpmn:sequenceFlow id="SequenceFlow_1qpxpkw" sourceRef="Task_04qmeu0" targetRef="ExclusiveGateway_00in8jw" />
     <bpmn:sequenceFlow id="SequenceFlow_1a9v2nh" sourceRef="Task_1q2638k" targetRef="Task_01btju2" />
     <bpmn:serviceTask id="Task_1q2638k" name="Student erzeugen" camunda:class="ImmatrikulationBewerber.StudentErzeugenDelegate">
@@ -230,6 +230,23 @@
       <bpmn:outgoing>SequenceFlow_0tsqriw</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_0tsqriw" sourceRef="ExclusiveGateway_0oukp0a" targetRef="ExclusiveGateway_1b6mun1" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0ht8bwb">
+      <bpmn:incoming>SequenceFlow_0c2ov56</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16zmlpc</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1hw59qf</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_16zmlpc" name="NC" sourceRef="ExclusiveGateway_0ht8bwb" targetRef="ExclusiveGateway_0dzeg7x">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'NC'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1wz6gbz">
+      <bpmn:incoming>SequenceFlow_0nr7wuj</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1hw59qf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_11yfm2d</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_11yfm2d" sourceRef="ExclusiveGateway_1wz6gbz" targetRef="IntermediateThrowEvent_1cypw2a" />
+    <bpmn:sequenceFlow id="SequenceFlow_1hw59qf" name="NC mit Test" sourceRef="ExclusiveGateway_0ht8bwb" targetRef="ExclusiveGateway_1wz6gbz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'NC mit Test'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:message id="Message_1gkjqj9" name="Immatrikulation-NC-Status" />
   <bpmn:message id="Message_16aad26" name="ImmatrikulationNcStatus" />
@@ -294,7 +311,7 @@
         <di:waypoint x="1869" y="639" />
         <di:waypoint x="1902" y="639" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1873" y="617" width="16" height="14" />
+          <dc:Bounds x="1843" y="617" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_0dzeg7x_di" bpmnElement="ExclusiveGateway_0dzeg7x" isMarkerVisible="true">
@@ -311,7 +328,7 @@
       <bpmndi:BPMNEdge id="SequenceFlow_0nr7wuj_di" bpmnElement="SequenceFlow_0nr7wuj">
         <di:waypoint x="1787" y="639" />
         <di:waypoint x="1710" y="639" />
-        <di:waypoint x="1710" y="822" />
+        <di:waypoint x="1710" y="705" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1737" y="621" width="22" height="14" />
         </bpmndi:BPMNLabel>
@@ -544,15 +561,14 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0gj5hai_di" bpmnElement="SequenceFlow_0gj5hai">
         <di:waypoint x="2185" y="510" />
-        <di:waypoint x="2310" y="510" />
+        <di:waypoint x="2250" y="510" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ScriptTask_1h7rndd_di" bpmnElement="Task_1auk5h2">
-        <dc:Bounds x="2310" y="470" width="100" height="80" />
+        <dc:Bounds x="2250" y="470" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0c2ov56_di" bpmnElement="SequenceFlow_0c2ov56">
-        <di:waypoint x="2410" y="510" />
-        <di:waypoint x="2450" y="510" />
-        <di:waypoint x="2450" y="685" />
+        <di:waypoint x="2350" y="489" />
+        <di:waypoint x="2463" y="438" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1qpxpkw_di" bpmnElement="SequenceFlow_1qpxpkw">
         <di:waypoint x="2040" y="599" />
@@ -572,6 +588,34 @@
       <bpmndi:BPMNEdge id="SequenceFlow_0tsqriw_di" bpmnElement="SequenceFlow_0tsqriw">
         <di:waypoint x="2655" y="310" />
         <di:waypoint x="2755" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0ht8bwb_di" bpmnElement="ExclusiveGateway_0ht8bwb" isMarkerVisible="true">
+        <dc:Bounds x="2455" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_16zmlpc_di" bpmnElement="SequenceFlow_16zmlpc">
+        <di:waypoint x="2480" y="455" />
+        <di:waypoint x="2480" y="560" />
+        <di:waypoint x="2454" y="689" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2480" y="497" width="16" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1wz6gbz_di" bpmnElement="ExclusiveGateway_1wz6gbz" isMarkerVisible="true">
+        <dc:Bounds x="1685" y="705" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_11yfm2d_di" bpmnElement="SequenceFlow_11yfm2d">
+        <di:waypoint x="1710" y="755" />
+        <di:waypoint x="1710" y="822" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1hw59qf_di" bpmnElement="SequenceFlow_1hw59qf">
+        <di:waypoint x="2470" y="415" />
+        <di:waypoint x="2390" y="290" />
+        <di:waypoint x="1580" y="290" />
+        <di:waypoint x="1580" y="730" />
+        <di:waypoint x="1685" y="730" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1956" y="272" width="58" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

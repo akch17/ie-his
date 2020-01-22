@@ -25,7 +25,6 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 				.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 		Statement statement = connection.createStatement();
 
-		// TODO NC und PDFs hinzufügen
 		// Bewerber aus der Bewerber-Tabelle holen
 		String sql = "SELECT BewerberID,BewerberVorname,BewerberNachname, BewerberAdresse, BewerberPLZ, BewerberEmail, BewerberNC, BewerberZeugnis, BewerberPassbild, BewerberLebenslauf  FROM his.bewerber where bewerberID = "
 				+ execution.getVariable("BewerberId") + " ";
@@ -55,7 +54,10 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 				bewerberZeugnis = (Blob) resultSet.getBlob("BewerberZeugnis");
 				bewerberLebenslauf = (Blob) resultSet.getBlob("BewerberLebenslauf");
 				bewerberPassbild = (Blob) resultSet.getBlob("BewerberPassbild");
+				//TODO entfernen
 				System.out.println("Bewerberzeugnis TEST" + bewerberZeugnis);
+				System.out.println("Bewerberzeugnis TEST" + bewerberLebenslauf);
+				System.out.println("Bewerberzeugnis TEST" + bewerberPassbild);
 			} catch (Exception e) {
 				System.out.println("Die Bewerberdaten konnten nicht selektiert werden");
 			}
@@ -73,6 +75,22 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 					Variables.objectValue(nc).serializationDataFormat(SerializationDataFormats.JSON).create());
 
 			try {
+				//TODO Bewerber-Dokumente in Userform laden
+				
+//				FileValue typedFileValue = Variables
+//						  .fileValue("addresses.txt")
+//						  .file(new File("path/to/the/file.txt"))
+//						  .mimeType("text/plain")
+//						  .encoding("UTF-8")
+//						  .create();
+//						runtimeService.setVariable(execution.getId(), "fileVariable", typedFileValue);
+//
+//						FileValue retrievedTypedFileValue = runtimeService.getVariableTyped(execution.getId(), "fileVariable");
+//						InputStream fileContent = retrievedTypedFileValue.getValue(); // a byte stream of the file contents
+//						String fileName = retrievedTypedFileValue.getFilename(); // equals "addresses.txt"
+//						String mimeType = retrievedTypedFileValue.getMimeType(); // equals "text/plain"
+//						String encoding = retrievedTypedFileValue.getEncoding(); // equals "UTF-8"
+				
 				
 
 			} catch (Exception e) {
