@@ -1,5 +1,6 @@
 package ImmatrikulationBewerber;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 		
 		//TODO NC und PDFs hinzufügen
 		// Bewerber aus der Bewerber-Tabelle holen
-		String sql = "SELECT BewerberID,BewerberVorname,BewerberNachname, BewerberAdresse, BewerberPLZ, BewerberEmail FROM his.bewerber where bewerberID = "
+		String sql = "SELECT BewerberID,BewerberVorname,BewerberNachname, BewerberAdresse, BewerberPLZ, BewerberEmail, BewerberNC, BewerberZeugnis, BewerberPassbild, BewerberLebenslauf  FROM his.bewerber where bewerberID = "
 				+ execution.getVariable("BewerberId") + " ";
 
 		// Ausführen des Selects auf der DB
@@ -36,7 +37,10 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 		int bewerberPLZ;
 		String bewerberAdresse;
 		String bewerberEmail;
-//		Blob bewerberZeugnis;
+		Blob bewerberZeugnis = null;
+		Blob bewerberLebenslauf = null;
+		Blob bewerberPassbild = null;
+		double nc;
 		
 		
 		
@@ -48,15 +52,15 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 			bewerberAdresse = resultSet.getString("BewerberAdresse");
 			bewerberPLZ = resultSet.getInt("BewerberPLZ");
 			bewerberEmail = "camundaproject12341234@gmail.com";
-//			bewerberZeugnis = (Blob) resultSet.getBlob("BewerberZeugnis");
-
-			// bewerberZeugnis1.put(BewerberZeugnis,
-			// resultSet.getString("BewerberZeugnis"));
-			// bewerber.put(BewerberID, resultSet.getString("BewerberLebenslauf"));
-			// bewerber.put(BewerberID, resultSet.getString("BewerberPassbild"));
-			// bewerber.put(BewerberID, resultSet.getString("BewerberNC"));
-			System.out.println(bewerberNachname);
-//		}
+			nc = resultSet.getDouble("BewerberNC");
+			
+			try {
+			bewerberZeugnis = (Blob) resultSet.getBlob("BewerberZeugnis");
+			bewerberLebenslauf = (Blob) resultSet.getBlob("BewerberLebenslauf");
+			bewerberPassbild = (Blob) resultSet.getBlob("BewerberPassbild");
+			}catch(Exception e) {
+				System.out.println("Die Bewerberdaten konnten nicht selektiert werden");
+			}
 
 			execution.setVariable("BewerberNachname", Variables.objectValue(bewerberNachname)
 					.serializationDataFormat(SerializationDataFormats.JSON).create());
@@ -68,9 +72,21 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 					Variables.objectValue(bewerberPLZ).serializationDataFormat(SerializationDataFormats.JSON).create());
 			execution.setVariable("BewerberEmail", Variables.objectValue(bewerberEmail)
 					.serializationDataFormat(SerializationDataFormats.JSON).create());
-//			execution.setVariable("BewerberZeugnis", Variables.objectValue(bewerberZeugnis)
-//					.serializationDataFormat(SerializationDataFormats.JSON).create());
-//		statement.setBlob("BewerberZeugnis", Variables.objectValue(bewerberZeugnis).serializationDataFormat(SerializationDataFormats.JSON).create());
+			execution.setVariable("BewerberNc", Variables.objectValue(nc)
+					.serializationDataFormat(SerializationDataFormats.JSON).create());
+			
+			
+			try {
+			execution.setVariable("BewerberZeugnis", Variables.objectValue(bewerberZeugnis)
+					.serializationDataFormat(SerializationDataFormats.JSON).create());
+			execution.setVariable("BewerberLebenslauf", Variables.objectValue(bewerberLebenslauf)
+					.serializationDataFormat(SerializationDataFormats.JSON).create());
+			execution.setVariable("BewerberPassbild", Variables.objectValue(bewerberPassbild)
+					.serializationDataFormat(SerializationDataFormats.JSON).create());
+			}catch(Exception e){
+				System.out.println("Die Bewerberdokumente konnten nicht geladen werden");
+			}
+			
 
 			execution.setVariable("BewerberEmail", "camundaproject12341234@gmail.com");
 			
