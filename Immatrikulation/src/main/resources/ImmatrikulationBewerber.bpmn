@@ -102,18 +102,18 @@
       <bpmn:outgoing>SequenceFlow_16gpl8g</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1hp7q0i" sourceRef="IntermediateThrowEvent_1ipjyu5" targetRef="Task_0ypdu80" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_01ol29r" name="Bezahlt?">
+    <bpmn:exclusiveGateway id="gateway_bezahlt" name="Bezahlt?">
       <bpmn:incoming>SequenceFlow_1se37ka</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0idbl8j</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1ydtb7n</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_0idbl8j" sourceRef="ExclusiveGateway_01ol29r" targetRef="Task_1qz4tfi">
+    <bpmn:sequenceFlow id="SequenceFlow_0idbl8j" sourceRef="gateway_bezahlt" targetRef="Task_1qz4tfi">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bezahlt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1ydtb7n" sourceRef="ExclusiveGateway_01ol29r" targetRef="Task_1o7g75a">
+    <bpmn:sequenceFlow id="SequenceFlow_1ydtb7n" sourceRef="gateway_bezahlt" targetRef="Task_1o7g75a">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${not bezahlt}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1se37ka" sourceRef="Task_0ypdu80" targetRef="ExclusiveGateway_01ol29r" />
+    <bpmn:sequenceFlow id="SequenceFlow_1se37ka" sourceRef="Task_0ypdu80" targetRef="gateway_bezahlt" />
     <bpmn:sequenceFlow id="SequenceFlow_0hf7snh" sourceRef="Task_1qz4tfi" targetRef="Task_1q2638k" />
     <bpmn:scriptTask id="Task_1qz4tfi" name="Bezahlt" scriptFormat="JavaScript">
       <bpmn:incoming>SequenceFlow_0idbl8j</bpmn:incoming>
@@ -392,15 +392,15 @@
         <di:waypoint x="2808" y="970" />
         <di:waypoint x="2850" y="970" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_01ol29r_di" bpmnElement="ExclusiveGateway_01ol29r" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="ExclusiveGateway_01ol29r_di" bpmnElement="gateway_bezahlt" isMarkerVisible="true">
         <dc:Bounds x="3045" y="935" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3050" y="992" width="44" height="14" />
+          <dc:Bounds x="3051" y="992" width="43" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0idbl8j_di" bpmnElement="SequenceFlow_0idbl8j">
         <di:waypoint x="3095" y="960" />
-        <di:waypoint x="3280" y="960" />
+        <di:waypoint x="3220" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1ydtb7n_di" bpmnElement="SequenceFlow_1ydtb7n">
         <di:waypoint x="3070" y="935" />
@@ -411,12 +411,13 @@
         <di:waypoint x="3045" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0hf7snh_di" bpmnElement="SequenceFlow_0hf7snh">
-        <di:waypoint x="3330" y="920" />
-        <di:waypoint x="3330" y="810" />
-        <di:waypoint x="3430" y="810" />
+        <di:waypoint x="3270" y="920" />
+        <di:waypoint x="3270" y="875" />
+        <di:waypoint x="3480" y="875" />
+        <di:waypoint x="3480" y="850" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ScriptTask_0ktvnn8_di" bpmnElement="Task_1qz4tfi">
-        <dc:Bounds x="3280" y="920" width="100" height="80" />
+        <dc:Bounds x="3220" y="920" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ScriptTask_1a2wxwk_di" bpmnElement="Task_1o7g75a">
         <dc:Bounds x="3020" y="650" width="100" height="80" />

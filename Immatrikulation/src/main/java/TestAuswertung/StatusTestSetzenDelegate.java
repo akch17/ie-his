@@ -51,10 +51,11 @@ public class StatusTestSetzenDelegate implements JavaDelegate {
 				+ " and his.bewerber.StatusID <> 6";
 		ArrayList<String> DurchgefallenID = new ArrayList<String>();
 		ResultSet res = stmt.executeQuery(sql);
+		
 		while (res.next()) {
 			DurchgefallenID.add(res.getString(1));
 		}
-
+		//TODO Nullabfangen
 		for (int i = 0; i < DurchgefallenID.size(); i++) {
 			//TODO sql bedingung status = 2 hinzufügen
 			sql = "UPDATE `his`.`bewerber` SET `StatusID` = 7  WHERE `BewerberID` = " + DurchgefallenID.get(i);

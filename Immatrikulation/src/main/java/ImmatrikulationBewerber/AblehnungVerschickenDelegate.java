@@ -37,9 +37,9 @@ public class AblehnungVerschickenDelegate implements JavaDelegate {
 		Statement stmt = connection.createStatement();
 		
 
-		int BewerberID = (int) execution.getVariable("BewerberId");
+		int statusID = (int) execution.getVariable("statusID");
 
-		String sql = "select statusID from his.bewerber where BewerberID = " + BewerberID;
+		String sql = "select StatusAktuell from his.Status where StatusID = " + statusID;
 		int StatusID = 0;
 		ResultSet res = stmt.executeQuery(sql);
 		while (res.next()) {
