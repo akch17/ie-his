@@ -14,6 +14,18 @@
       <bpmn:incoming>SequenceFlow_187vtii</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_1cws2ag" camunda:class="NcAuswertung.NcMessageSendenDelegate" />
     </bpmn:endEvent>
+    <bpmn:textAnnotation id="TextAnnotation_1fszj1h">
+      <bpmn:text>Es wird eine Message an den Immatrikulationsprozess geschickt</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1ipd5ae" sourceRef="IntermediateThrowEvent_04gl4mp" targetRef="TextAnnotation_1fszj1h" />
+    <bpmn:textAnnotation id="TextAnnotation_10a0h07">
+      <bpmn:text>Der Prozess wird manuell nach dem Bewerbungsfristende vom Studiensekretariat gestartet.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1i03x8j" sourceRef="StartEvent_1" targetRef="TextAnnotation_10a0h07" />
+    <bpmn:textAnnotation id="TextAnnotation_1uxlm3d">
+      <bpmn:text>Es wird für jeden Studiengang die Anzahl der Plätze selektiert. Dann werden alle Bewerber nach NC sortiert. Nun wird für jeden Studenten, der in den ersten Zeilen innerhalb der Anzahl der Plätze des jeweiligen Studienganges der Status auf "Note ausreichend" gesetzt. Bei den restlichen Bewerbern wird der Status auf  "Note nicht ausreichend" gesetzt.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0vu4lg0" sourceRef="Task_1eocm2s" targetRef="TextAnnotation_1uxlm3d" />
   </bpmn:process>
   <bpmn:signal id="Signal_1sk25t4" name="ImmatrikulationNcStatus" />
   <bpmn:message id="Message_07k7d4l" name="ImmatrikulationNcStatus" />
@@ -21,28 +33,49 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="NcAuswertung">
       <bpmndi:BPMNShape id="ServiceTask_04786a0_di" bpmnElement="Task_1eocm2s">
-        <dc:Bounds x="410" y="77" width="100" height="80" />
+        <dc:Bounds x="490" y="177" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1bb9pv6_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <dc:Bounds x="259" y="199" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="156" y="142" width="83" height="27" />
+          <dc:Bounds x="236" y="242" width="83" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1mneaet_di" bpmnElement="SequenceFlow_1mneaet">
-        <di:waypoint x="215" y="117" />
-        <di:waypoint x="410" y="117" />
+        <di:waypoint x="295" y="217" />
+        <di:waypoint x="490" y="217" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_187vtii_di" bpmnElement="SequenceFlow_187vtii">
-        <di:waypoint x="510" y="117" />
-        <di:waypoint x="652" y="117" />
+        <di:waypoint x="590" y="217" />
+        <di:waypoint x="732" y="217" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_1kb3p65_di" bpmnElement="IntermediateThrowEvent_04gl4mp">
-        <dc:Bounds x="652" y="99" width="36" height="36" />
+        <dc:Bounds x="732" y="199" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="626" y="142" width="89" height="53" />
+          <dc:Bounds x="706" y="242" width="89" height="53" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_1fszj1h_di" bpmnElement="TextAnnotation_1fszj1h">
+        <dc:Bounds x="850" y="140" width="100" height="98" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1ipd5ae_di" bpmnElement="Association_1ipd5ae">
+        <di:waypoint x="768" y="214" />
+        <di:waypoint x="850" y="198" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_10a0h07_di" bpmnElement="TextAnnotation_10a0h07">
+        <dc:Bounds x="160" y="80" width="156" height="84" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1i03x8j_di" bpmnElement="Association_1i03x8j">
+        <di:waypoint x="270" y="200" />
+        <di:waypoint x="255" y="164" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1uxlm3d_di" bpmnElement="TextAnnotation_1uxlm3d">
+        <dc:Bounds x="400" y="370" width="249" height="142" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0vu4lg0_di" bpmnElement="Association_0vu4lg0">
+        <di:waypoint x="537" y="257" />
+        <di:waypoint x="530" y="370" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

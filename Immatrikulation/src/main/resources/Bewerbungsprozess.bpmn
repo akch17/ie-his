@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_10dgw71" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
   <bpmn:process id="Bewerbungsprozess" isExecutable="true" camunda:candidateStarterGroups="bewerber">
-    <bpmn:startEvent id="StartEvent_1">
+    <bpmn:startEvent id="StartEvent_1" name="Start der Bewerbung">
       <bpmn:outgoing>SequenceFlow_13ykkr3</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_13ykkr3" sourceRef="StartEvent_1" targetRef="Bewerbungsprozess1" />
@@ -29,48 +29,117 @@
       <bpmn:incoming>SequenceFlow_0apf9ai</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_098zb1y" camunda:class="Bewerbung.BewerbungMessageSendenDelegate" />
     </bpmn:endEvent>
+    <bpmn:textAnnotation id="TextAnnotation_0re3zny">
+      <bpmn:text>Es werden alle Studiengänge aus der Datenbank in eine Liste geschrieben</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1h1ub7m" sourceRef="Bewerbungsprozess1" targetRef="TextAnnotation_0re3zny" />
+    <bpmn:textAnnotation id="TextAnnotation_1rt6kov">
+      <bpmn:text>Der Bewerber hat die Möglichkeit, einen Studiengang aus der Liste auszuwählen</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1gij5ha" sourceRef="Bewerbungsprozess2" targetRef="TextAnnotation_1rt6kov" />
+    <bpmn:textAnnotation id="TextAnnotation_0ybyqg0">
+      <bpmn:text>Der Bewerber muss alle geforderten Daten eingeben bzw. geforderte Dateien hochladen.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0afxq3j" sourceRef="UserTask_139r8ys" targetRef="TextAnnotation_0ybyqg0" />
+    <bpmn:textAnnotation id="TextAnnotation_0b8sv57">
+      <bpmn:text>Die vom Bewerber eingegebenen Daten werden als neuer Eintrag in der Bewerber-Tabelle gespeichert.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1twn1mr" sourceRef="Task_0mlnzli" targetRef="TextAnnotation_0b8sv57" />
+    <bpmn:textAnnotation id="TextAnnotation_0eq60ap">
+      <bpmn:text>Es wird eine Message an den Immatrikulationsprozess gesendet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0kztyyl" sourceRef="EndEvent_0m0l91h" targetRef="TextAnnotation_0eq60ap" />
+    <bpmn:textAnnotation id="TextAnnotation_0q1k6zh">
+      <bpmn:text>Der Prozess wird manuell vom einem Bewerber gestartet.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_02aonlz" sourceRef="StartEvent_1" targetRef="TextAnnotation_0q1k6zh" />
   </bpmn:process>
   <bpmn:message id="Message_098zb1y" name="Bewerbung" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Bewerbungsprozess">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="152" y="99" width="36" height="36" />
+        <dc:Bounds x="272" y="249" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="262" y="292" width="56" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_13ykkr3_di" bpmnElement="SequenceFlow_13ykkr3">
-        <di:waypoint x="188" y="117" />
-        <di:waypoint x="270" y="117" />
+        <di:waypoint x="308" y="267" />
+        <di:waypoint x="390" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1trkn27_di" bpmnElement="SequenceFlow_1trkn27">
-        <di:waypoint x="600" y="117" />
-        <di:waypoint x="740" y="117" />
+        <di:waypoint x="720" y="267" />
+        <di:waypoint x="860" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1wfvqqy_di" bpmnElement="Bewerbungsprozess2">
-        <dc:Bounds x="500" y="77" width="100" height="80" />
+        <dc:Bounds x="620" y="227" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_05bl162_di" bpmnElement="SequenceFlow_05bl162">
-        <di:waypoint x="370" y="117" />
-        <di:waypoint x="500" y="117" />
+        <di:waypoint x="490" y="267" />
+        <di:waypoint x="620" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1gvviis_di" bpmnElement="Bewerbungsprozess1">
-        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <dc:Bounds x="390" y="227" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_139r8ys_di" bpmnElement="UserTask_139r8ys">
-        <dc:Bounds x="740" y="77" width="100" height="80" />
+        <dc:Bounds x="860" y="227" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_05e8id7_di" bpmnElement="SequenceFlow_05e8id7">
-        <di:waypoint x="840" y="117" />
-        <di:waypoint x="970" y="117" />
+        <di:waypoint x="960" y="267" />
+        <di:waypoint x="1090" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0apf9ai_di" bpmnElement="SequenceFlow_0apf9ai">
-        <di:waypoint x="1070" y="117" />
-        <di:waypoint x="1132" y="117" />
+        <di:waypoint x="1190" y="267" />
+        <di:waypoint x="1252" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1slwn8t_di" bpmnElement="Task_0mlnzli">
-        <dc:Bounds x="970" y="77" width="100" height="80" />
+        <dc:Bounds x="1090" y="227" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1a6ghoz_di" bpmnElement="EndEvent_0m0l91h">
-        <dc:Bounds x="1132" y="99" width="36" height="36" />
+        <dc:Bounds x="1252" y="249" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0re3zny_di" bpmnElement="TextAnnotation_0re3zny">
+        <dc:Bounds x="420" y="80" width="140" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1h1ub7m_di" bpmnElement="Association_1h1ub7m">
+        <di:waypoint x="453" y="227" />
+        <di:waypoint x="478" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1rt6kov_di" bpmnElement="TextAnnotation_1rt6kov">
+        <dc:Bounds x="590" y="390" width="150" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1gij5ha_di" bpmnElement="Association_1gij5ha">
+        <di:waypoint x="669" y="307" />
+        <di:waypoint x="666" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0ybyqg0_di" bpmnElement="TextAnnotation_0ybyqg0">
+        <dc:Bounds x="870" y="100" width="140" height="83" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0afxq3j_di" bpmnElement="Association_0afxq3j">
+        <di:waypoint x="920" y="227" />
+        <di:waypoint x="930" y="183" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0b8sv57_di" bpmnElement="TextAnnotation_0b8sv57">
+        <dc:Bounds x="1120" y="390" width="180" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1twn1mr_di" bpmnElement="Association_1twn1mr">
+        <di:waypoint x="1158" y="307" />
+        <di:waypoint x="1194" y="390" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0eq60ap_di" bpmnElement="TextAnnotation_0eq60ap">
+        <dc:Bounds x="1240" y="110" width="150" height="73" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0kztyyl_di" bpmnElement="Association_0kztyyl">
+        <di:waypoint x="1276" y="250" />
+        <di:waypoint x="1302" y="183" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0q1k6zh_di" bpmnElement="TextAnnotation_0q1k6zh">
+        <dc:Bounds x="160" y="100" width="152" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_02aonlz_di" bpmnElement="Association_02aonlz">
+        <di:waypoint x="284" y="250" />
+        <di:waypoint x="246" y="155" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

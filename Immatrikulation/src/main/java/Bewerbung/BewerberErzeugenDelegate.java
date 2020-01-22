@@ -99,9 +99,9 @@ public class BewerberErzeugenDelegate implements JavaDelegate {
 		
 		
 		
-		dateiAbspeichern(lebenslauf, "Lebenslauf");
-		dateiAbspeichern(passbild, "Passbild");
-		dateiAbspeichern(zeugnis, "Zeugnis");
+		dateiAbspeichern(lebenslauf, id, "Lebenslauf");
+		dateiAbspeichern(passbild, id, "Passbild");
+		dateiAbspeichern(zeugnis, id, "Zeugnis");
 		
 		
 		try {
@@ -114,7 +114,7 @@ public class BewerberErzeugenDelegate implements JavaDelegate {
 		execution.setVariable("BewerberId", id);
 	}
 	
-	public void dateiAbspeichern(InputStream inputstream, String datei){
+	public static void dateiAbspeichern(InputStream inputstream, Integer id, String datei){
 		try {
 			inputstream.reset();
 		byte[] buffer = new byte[inputstream.available()];

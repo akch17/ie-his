@@ -31,8 +31,7 @@ public class BewerberlisteErstellenDelegate implements JavaDelegate {
 		ResultSet res = stmt.executeQuery(sql);
 
 		res.first();
-		Integer bewerber = (Integer) res.getObject(1);
-		bewerberliste.put(bewerber.toString(), bewerber.toString());
+		Integer bewerber;
 		
 		while (res.next()) {
 			bewerber = (Integer) res.getObject(1);

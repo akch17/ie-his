@@ -25,10 +25,34 @@
       <bpmn:incoming>SequenceFlow_0vgg437</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1pcbmq7</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:endEvent id="IntermediateThrowEvent_034jvwk">
+    <bpmn:endEvent id="IntermediateThrowEvent_034jvwk" name="Prozessende">
       <bpmn:incoming>SequenceFlow_1pcbmq7</bpmn:incoming>
       <bpmn:messageEventDefinition messageRef="Message_0w5phb5" camunda:class="TestAuswertung.TestMessageSendenDelegate" />
     </bpmn:endEvent>
+    <bpmn:textAnnotation id="TextAnnotation_0mx9jti">
+      <bpmn:text>Der Prozess wird manuell vom Zulassungsprüfer gestartet.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0lojemn" sourceRef="StartEvent_1" targetRef="TextAnnotation_0mx9jti" />
+    <bpmn:textAnnotation id="TextAnnotation_09b5q49">
+      <bpmn:text>Es wird eine Nachricht mit Testinformationen an den Bewerber gesendet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1qsd0ca" sourceRef="Nachrichtsenden" targetRef="TextAnnotation_09b5q49" />
+    <bpmn:textAnnotation id="TextAnnotation_03naafw">
+      <bpmn:text>Es wird eine Message an den Immatrikulationsprozess gesendet</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_16hsq2r" sourceRef="IntermediateThrowEvent_034jvwk" targetRef="TextAnnotation_03naafw" />
+    <bpmn:textAnnotation id="TextAnnotation_0v4wpeq">
+      <bpmn:text>Es werden alle Bewerber, die sich auf einen Studiengang mit Testzulassung beworben haben, in eine Liste geschrieben.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_06tmwf1" sourceRef="Task_1jk9avb" targetRef="TextAnnotation_0v4wpeq" />
+    <bpmn:textAnnotation id="TextAnnotation_025hhbj">
+      <bpmn:text>Es wird eine Liste der Bewerber in Abhängigkeit der Liste dynamisch generieren. Der Zulassungsprüfer kann nun für jeden Bewerber das Testergebnis der Studiengebühren bestätigen.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0nslegk" sourceRef="Task_16id447" targetRef="TextAnnotation_025hhbj" />
+    <bpmn:textAnnotation id="TextAnnotation_0b7tyo7">
+      <bpmn:text>Der Status aller Studenten wird in Abhängigkeit des vorhergegangen Prozesses auf "bestanden" oder "nicht bestanden" gesetzt.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_145gm3m" sourceRef="Task_0i5u6q2" targetRef="TextAnnotation_0b7tyo7" />
   </bpmn:process>
   <bpmn:signal id="Signal_0kiq5vs" name="ImmatrikulationTestStatus" />
   <bpmn:message id="Message_13xqb06" name="Message_24f89ht" />
@@ -36,46 +60,91 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Testabwicklung">
       <bpmndi:BPMNShape id="StartEvent_0yghj8m_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="202" y="99" width="36" height="36" />
+        <dc:Bounds x="252" y="259" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="182" y="142" width="76" height="14" />
+          <dc:Bounds x="232" y="302" width="76" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0mwh3oe_di" bpmnElement="SequenceFlow_0mwh3oe">
-        <di:waypoint x="238" y="117" />
-        <di:waypoint x="310" y="117" />
+        <di:waypoint x="288" y="277" />
+        <di:waypoint x="360" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="SendTask_01mlurj_di" bpmnElement="Nachrichtsenden">
-        <dc:Bounds x="480" y="77" width="100" height="80" />
+        <dc:Bounds x="530" y="237" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0vgg437_di" bpmnElement="SequenceFlow_0vgg437">
-        <di:waypoint x="760" y="117" />
-        <di:waypoint x="850" y="117" />
+        <di:waypoint x="810" y="277" />
+        <di:waypoint x="900" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0a8v4xu_di" bpmnElement="Task_16id447">
-        <dc:Bounds x="660" y="77" width="100" height="80" />
+        <dc:Bounds x="710" y="237" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_07fg2jz_di" bpmnElement="SequenceFlow_07fg2jz">
-        <di:waypoint x="580" y="117" />
-        <di:waypoint x="660" y="117" />
+        <di:waypoint x="630" y="277" />
+        <di:waypoint x="710" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0ht3zl5_di" bpmnElement="SequenceFlow_0ht3zl5">
-        <di:waypoint x="410" y="117" />
-        <di:waypoint x="480" y="117" />
+        <di:waypoint x="460" y="277" />
+        <di:waypoint x="530" y="277" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1t9io53_di" bpmnElement="Task_1jk9avb">
-        <dc:Bounds x="310" y="77" width="100" height="80" />
+        <dc:Bounds x="360" y="237" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1pcbmq7_di" bpmnElement="SequenceFlow_1pcbmq7">
-        <di:waypoint x="950" y="110" />
-        <di:waypoint x="1042" y="110" />
+        <di:waypoint x="1000" y="270" />
+        <di:waypoint x="1092" y="270" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_06xpoze_di" bpmnElement="Task_0i5u6q2">
-        <dc:Bounds x="850" y="70" width="100" height="80" />
+        <dc:Bounds x="900" y="230" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1alwvbw_di" bpmnElement="IntermediateThrowEvent_034jvwk">
-        <dc:Bounds x="1042" y="92" width="36" height="36" />
+        <dc:Bounds x="1092" y="252" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1078" y="295" width="65" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0mx9jti_di" bpmnElement="TextAnnotation_0mx9jti">
+        <dc:Bounds x="160" y="130" width="135" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0lojemn_di" bpmnElement="Association_0lojemn">
+        <di:waypoint x="264" y="260" />
+        <di:waypoint x="241" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_09b5q49_di" bpmnElement="TextAnnotation_09b5q49">
+        <dc:Bounds x="530" y="80" width="100" height="98" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1qsd0ca_di" bpmnElement="Association_1qsd0ca">
+        <di:waypoint x="580" y="237" />
+        <di:waypoint x="580" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_03naafw_di" bpmnElement="TextAnnotation_03naafw">
+        <dc:Bounds x="1110" y="102" width="100" height="98" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_16hsq2r_di" bpmnElement="Association_16hsq2r">
+        <di:waypoint x="1117" y="254" />
+        <di:waypoint x="1139" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0v4wpeq_di" bpmnElement="TextAnnotation_0v4wpeq">
+        <dc:Bounds x="360" y="380" width="163" height="98" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_06tmwf1_di" bpmnElement="Association_06tmwf1">
+        <di:waypoint x="418" y="317" />
+        <di:waypoint x="432" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_025hhbj_di" bpmnElement="TextAnnotation_025hhbj">
+        <dc:Bounds x="710" y="400" width="198" height="98" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0nslegk_di" bpmnElement="Association_0nslegk">
+        <di:waypoint x="771" y="317" />
+        <di:waypoint x="795" y="400" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0b7tyo7_di" bpmnElement="TextAnnotation_0b7tyo7">
+        <dc:Bounds x="860" y="44" width="160" height="86" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_145gm3m_di" bpmnElement="Association_145gm3m">
+        <di:waypoint x="948" y="230" />
+        <di:waypoint x="942" y="130" />
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

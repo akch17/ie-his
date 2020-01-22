@@ -15,12 +15,16 @@ public class StatusUngueltigSetzenDelegate implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
-		Integer bewerberId = (Integer) execution.getVariable("BewerberId");
+		
+		//TODO Wird nicht ausgeführt, wenn man den Haken nicht setzt.
+		String bewerberIdString = (String) execution.getVariable("BewerberId");
+		Integer bewerberId = Integer.parseInt(bewerberIdString);
+		execution.setVariable("BewerberId", bewerberId);
 		
 		Connection connection;
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 		Statement statement = connection.createStatement();
-		String sql = "UPDATE his.bewerber SET StatusID = 3 WHERE (BewerberId = "+bewerberId+")";
+		String sql = "UPDATE his.bewerber SET StatusID = 3 WHERE BewerberId = " + bewerberId + " ";
 		statement.executeUpdate(sql);
 		
 		execution.setVariable("statusID" , 3);
