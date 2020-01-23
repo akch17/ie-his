@@ -54,7 +54,6 @@ public class BewerberlisteTestErstellenDelegate implements JavaDelegate {
 				+ " and his.bewerber.StatusID = 2  or his.bewerber.StatusID = 4";
 
 		
-		System.out.println(sqlBewerberVorname);
 		ArrayList<String> BewerberVorname = new ArrayList<String>();
 		res = stmt.executeQuery(sqlBewerberVorname);
 		while (res.next()) {
