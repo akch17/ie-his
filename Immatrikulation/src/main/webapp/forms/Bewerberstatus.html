@@ -82,33 +82,11 @@
 						cam-variable-type="Double" readonly="true" class="form-control" />
 				</div>
 			</div>
-
+			<br>
+<div id = test> </div>
 			<div class="col-xs-6">
 
-				<!-- Control zum Upload einer Datei 
-
-  <div class="form-group">
-    <label class="control-label col-md-2">Passbild</label>
-    <div class="form-control-static col-md-10">
-      <a cam-file-download="BewerberPassbild2">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="control-label col-md-2">Zeugnis</label>
-    <div class="form-control-static col-md-10">
-      <a cam-file-download="BewerberZeugnis2">
-    </div>
-  </div>
-
-
-  <div class="form-group">
-    <label class="control-label col-md-2">Lebenslauf</label>
-    <div class="form-control-static col-md-10">
-      <a cam-file-download="BewerberLebenslauf2">
-    </div>
-  </div>
---->
+	 
 				<div class="control-group">
 					<hr>
 					<label class="control-label">Sind die Daten des Bewerbers
@@ -121,10 +99,73 @@
 
 			</div>
 
-
+ 
 		</div>
 
-		<script cam-script type="text/form-script">
-  // custom JavaScript goes here
-  </script>
+   
+  <script cam-script type="text/form-script">
+  var variableManager = camForm.variableManager;
+    camForm.on('form-loaded', function() {
+    debugger;
+      // this callback is executed *before* the variables are loaded from the server.
+      // if we declare a variable here, its value will be fetched as well
+      variableManager.fetchVariable("bewerberLebenslauf");
+      variableManager.fetchVariable("bewerberZeugnis");
+      variableManager.fetchVariable("bewerberPassbild");
+ 
+    });
+
+    camForm.on('variables-fetched', function() {
+      // this callback is executed *after* the variables have been fetched from the server
+ 
+  var test = "http://localhost:8080" + variableManager.variables.bewerberLebenslauf.contentUrl
+ 
+	  
+		 var a = document.createElement("a");
+		a.innerHTML = "Lebenslauf";
+		a.href = test;
+ 		a.target = '_blank';
+
+ 
+         var div = document.getElementById('test');
+          div.appendChild(a)
+         div.appendChild(document.createElement("br"));
+          div.appendChild(document.createElement("br"));
+ 
+   var test = "http://localhost:8080" + variableManager.variables.bewerberZeugnis.contentUrl
+ 
+	   var a2 = document.createElement("a");
+	 
+ 		a2.innerHTML = "Zeugnis";
+		a2.href = test;
+ 		a2.target = '_blank';
+ 
+ 
+         var div = document.getElementById('test');
+          div.appendChild(a2)
+         div.appendChild(document.createElement("br"));
+          div.appendChild(document.createElement("br"));
+	  
+	    var test = "http://localhost:8080" + variableManager.variables.bewerberPassbild.contentUrl
+	  
+	   
+ 
+ 	  
+		 var a3 = document.createElement("a");
+		a3.innerHTML = "Passbild";
+		a3.href = test;
+ 		a3.target = '_blank';
+ 
+ 
+         var div = document.getElementById('test');
+          div.appendChild(a3)
+         div.appendChild(document.createElement("br"));
+          div.appendChild(document.createElement("br"));
+ 
+     
+    });
+ 
+ 
+</script> 
+  
 </form>

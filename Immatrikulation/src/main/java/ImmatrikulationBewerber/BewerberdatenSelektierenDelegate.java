@@ -1,8 +1,9 @@
 package ImmatrikulationBewerber;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+
+import java.io.FileOutputStream;
+
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +16,7 @@ import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 import org.camunda.bpm.engine.variable.value.FileValue;
 
-import Bewerbung.BewerberErzeugenDelegate;
+
 
 public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 
@@ -36,7 +37,7 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 
 		// Ausführen des Selects auf der DB
 		ResultSet resultSet = statement.executeQuery(sql);
-//		// Alle Bewerber in eine Hash Map speichern
+		// // Alle Bewerber in eine Hash Map speichern
 		String bewerberNachname;
 		String bewerberVorname;
 		int bewerberPLZ;
@@ -59,42 +60,46 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 				bewerberZeugnis = (Blob) resultSet.getBlob("BewerberZeugnis");
 				bewerberLebenslauf = (Blob) resultSet.getBlob("BewerberLebenslauf");
 				bewerberPassbild = (Blob) resultSet.getBlob("BewerberPassbild");
-				//TODO entfernen
-				System.out.println("Bewerberzeugnis TEST" + bewerberZeugnis);
-				System.out.println("Bewerberzeugnis TEST" + bewerberLebenslauf);
-				System.out.println("Bewerberzeugnis TEST" + bewerberPassbild);
-				
-				
-				
-				InputStream test2 = bewerberZeugnis.getBinaryStream(); //Datei wird erfolgreich aus der Datenbank als Inputstream initialisiert.
-				BewerberErzeugenDelegate.dateiAbspeichern(test2, 1000000000, "TEEEEEEEEEST"); //Datei wird erfolgreich wieder als PDF gespeichert.
-				
-				//funktioniert nicht
-				FileValue fileVariable = execution.getVariableTyped("BewerberZeugnis");  
-				Variables.fileValue(fileVariable.getFilename()).file(test2).encoding(fileVariable.getEncoding()).mimeType(fileVariable.getMimeType()).create();
-				
-				InputStream test3 = bewerberLebenslauf.getBinaryStream();
-				FileValue fileVariable3 = execution.getVariableTyped("BewerberLebenslauf");  
-				Variables.fileValue(fileVariable3.getFilename()).file(test3).encoding(fileVariable3.getEncoding()).mimeType(fileVariable3.getMimeType()).create();
-					
-				InputStream test4 = bewerberPassbild.getBinaryStream();
-				FileValue fileVariable4 = execution.getVariableTyped("BewerberPassbild");  
-				Variables.fileValue(fileVariable4.getFilename()).file(test4).encoding(fileVariable4.getEncoding()).mimeType(fileVariable4.getMimeType()).create();
-					
-//				FileValue typedFileValue = Variables
-//						  .fileValue("Lebenslauf.pdf")
-//						  .file(test2)
-//						  .mimeType("application.pdf")
-//						  .encoding("UTF-8")
-//						  .create();
-//				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(), "BewerberZeugnis2", typedFileValue);
-//				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(), "BewerberLebenslauf2", typedFileValue);
-//				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(), "BewerberPassbild2", typedFileValue);
-//
-				
-				BewerberErzeugenDelegate.dateiAbspeichern(test2, 1000000000, "TEEEEEEEEEST");
-				
-				
+
+				byte[] array = bewerberZeugnis.getBytes(1, (int) bewerberZeugnis.length());
+				File file = File.createTempFile("something-", ".binary", new File("."));
+
+				FileOutputStream out = new FileOutputStream(file);
+				out.write(array);
+				out.close();
+
+				FileValue typedFileValue = Variables.fileValue("BewerberZeugnis.pdf").file(file)
+						.mimeType("application/pdf").create();
+				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(),
+						"bewerberZeugnis", typedFileValue);
+				file.delete();
+
+				array = bewerberLebenslauf.getBytes(1, (int) bewerberLebenslauf.length());
+				file = File.createTempFile("something-", ".binary", new File("."));
+
+				out = new FileOutputStream(file);
+				out.write(array);
+				out.close();
+
+				typedFileValue = Variables.fileValue("BewerberLebenslauf.pdf").file(file).mimeType("application/pdf")
+						.create();
+				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(),
+						"bewerberLebenslauf", typedFileValue);
+				file.delete();
+
+				array = bewerberPassbild.getBytes(1, (int) bewerberPassbild.length());
+				file = File.createTempFile("something-", ".binary", new File("."));
+
+				out = new FileOutputStream(file);
+				out.write(array);
+				out.close();
+
+				typedFileValue = Variables.fileValue("BewerberPassbild.pdf").file(file).mimeType("application/pdf")
+						.create();
+				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(),
+						"bewerberPassbild", typedFileValue);
+				file.delete();
+
 			} catch (Exception e) {
 				System.out.println("Die Bewerberdaten konnten nicht selektiert werden");
 			}
@@ -110,30 +115,6 @@ public class BewerberdatenSelektierenDelegate implements JavaDelegate {
 					.serializationDataFormat(SerializationDataFormats.JSON).create());
 			execution.setVariable("BewerberNc",
 					Variables.objectValue(nc).serializationDataFormat(SerializationDataFormats.JSON).create());
-
-			try {
-				//TODO Bewerber-Dokumente in Userform laden
-				//funktioniert nicht
-				//TODO in Userform "Bewerberstatus" sind die PDF-Variablen nocht auskommentiert.
-//				FileValue typedFileValue = Variables
-//						  .fileValue("Lebenslauf.pdf")
-//						  .file(new File(test2))
-//						  .mimeType("application.pdf")
-//						  .encoding("UTF-8")
-//						  .create();
-//				execution.getProcessEngineServices().getRuntimeService().setVariable(execution.getId(), "fileVariable", typedFileValue);
-////
-//						FileValue retrievedTypedFileValue = runtimeService.getVariableTyped(execution.getId(), "fileVariable");
-//						InputStream fileContent = retrievedTypedFileValue.getValue(); // a byte stream of the file contents
-//						String fileName = retrievedTypedFileValue.getFilename(); // equals "addresses.txt"
-//						String mimeType = retrievedTypedFileValue.getMimeType(); // equals "text/plain"
-//						String encoding = retrievedTypedFileValue.getEncoding(); // equals "UTF-8"
-				
-				
-
-			} catch (Exception e) {
-				System.out.println("Die Variable für die Bewerberdokumente konnte nicht gesetzt werden");
-			}
 
 			execution.setVariable("BewerberEmail", "camundaproject12341234@gmail.com");
 
