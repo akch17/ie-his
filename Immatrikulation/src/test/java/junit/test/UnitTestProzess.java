@@ -1,4 +1,4 @@
-package learnbpm.example.test.einfacherprozess;
+package junit.test;
 
 import org.apache.ibatis.logging.LogFactory;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
@@ -50,7 +50,7 @@ public class UnitTestProzess {
 	// Einstiegspunkt in den Prozess muss definiert werden
 	@Test
 	@Deployment(resources = { "ImmatrikulationBewerber.bpmn" })
-	public void testProcessPartFromDategenform() throws ParseException {
+	public void testProcessPartFromBezahltGate() throws ParseException {
 
 		// Prozessinstanz von "ImmatrikulationBewerber" vor dem Start der
 		// Aktivität mit der Id "gateway_bezahlt"
