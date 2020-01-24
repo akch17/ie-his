@@ -61,9 +61,9 @@ public class StudentErzeugenDelegate implements JavaDelegate {
 			BewerberAdresse = resultSet.getString("BewerberAdresse");
 			BewerberPLZ = resultSet.getInt("BewerberPLZ");
 			BewerberEmail = resultSet.getString("BewerberEmail");
-			BewerberZeugnis = null; //(Blob) resultSet.getBlob("BewerberZeugnis");
-			BewerberLebenslauf = null; //(Blob) resultSet.getBlob("BewerberLebenslauf");
-			BewerberPassbild = null;//(Blob) resultSet.getBlob("BewerberPassbild");
+			BewerberZeugnis = (Blob) resultSet.getBlob("bewerberZeugnis");
+			BewerberLebenslauf =  (Blob) resultSet.getBlob("bewerberLebenslauf");
+			BewerberPassbild =  (Blob) resultSet.getBlob("bewerberPassbild");
 			BewerberNC = resultSet.getInt("BewerberNC");
 			StudiengangID = resultSet.getInt("StudiengangID");
 

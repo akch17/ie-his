@@ -13,7 +13,6 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.Variables.SerializationDataFormats;
 
-import com.mysql.jdbc.Blob;
 
 public class BewerberlisteErstellenDelegate implements JavaDelegate {
 

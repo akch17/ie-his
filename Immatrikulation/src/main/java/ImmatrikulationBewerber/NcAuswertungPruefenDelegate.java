@@ -33,12 +33,10 @@ public class NcAuswertungPruefenDelegate implements JavaDelegate {
 		if (status == 4) { //Note ausreichend
 		    nc = true; 
 			execution.setVariable("statusNc", nc);
-		}else if (status == 5) { 
+		}else  { 
 			nc = false;
 			execution.setVariable("statusNc", nc);
-		}else {
 		}
-		
 		
 	}
 
