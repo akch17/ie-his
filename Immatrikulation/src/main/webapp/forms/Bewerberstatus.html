@@ -106,7 +106,7 @@
   <script cam-script type="text/form-script">
   var variableManager = camForm.variableManager;
     camForm.on('form-loaded', function() {
-    debugger;
+
       // this callback is executed *before* the variables are loaded from the server.
       // if we declare a variable here, its value will be fetched as well
       variableManager.fetchVariable("bewerberLebenslauf");
@@ -117,13 +117,14 @@
 
     camForm.on('variables-fetched', function() {
       // this callback is executed *after* the variables have been fetched from the server
- 
-  var test = "http://localhost:8080" + variableManager.variables.bewerberLebenslauf.contentUrl
- 
+  
+  // adresse vom webserver (localhost8080) + getrequest für die variabel 
+  var getrequest = window.location.origin + variableManager.variables.bewerberLebenslauf.contentUrl
+ 	 
 	  
 		 var a = document.createElement("a");
 		a.innerHTML = "Lebenslauf";
-		a.href = test;
+		a.href = getrequest;
  		a.target = '_blank';
 
  
@@ -132,12 +133,12 @@
          div.appendChild(document.createElement("br"));
           div.appendChild(document.createElement("br"));
  
-   var test = "http://localhost:8080" + variableManager.variables.bewerberZeugnis.contentUrl
+   getrequest = window.location.origin + variableManager.variables.bewerberZeugnis.contentUrl
  
 	   var a2 = document.createElement("a");
 	 
  		a2.innerHTML = "Zeugnis";
-		a2.href = test;
+		a2.href = getrequest;
  		a2.target = '_blank';
  
  
@@ -146,14 +147,14 @@
          div.appendChild(document.createElement("br"));
           div.appendChild(document.createElement("br"));
 	  
-	    var test = "http://localhost:8080" + variableManager.variables.bewerberPassbild.contentUrl
+	    getrequest = window.location.origin + variableManager.variables.bewerberPassbild.contentUrl
 	  
 	   
  
  	  
 		 var a3 = document.createElement("a");
 		a3.innerHTML = "Passbild";
-		a3.href = test;
+		a3.href = getrequest;
  		a3.target = '_blank';
  
  
