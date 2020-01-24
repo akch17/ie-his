@@ -39,7 +39,7 @@ public class AufnahmeErklaerungSendenDelegate implements JavaDelegate {
 		document.addTitle("Aufnahmeerklärung");
 
 		Paragraph paragraph = new Paragraph();
-		paragraph.add(new Chunk("Hallo " + execution.getVariable("BewerberName")
+		paragraph.add(new Chunk("Hallo " + execution.getVariable("BewerberNachname")
 				+ ", dies ist die Aufnahmeerklärung für ihr Studium an unserer Hochschule"));
 		document.add(paragraph);
 
