@@ -240,7 +240,7 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${gueltig}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0yoauw1" sourceRef="Task_1q6h25z" targetRef="EndEvent_00nqkn1" />
-    <bpmn:serviceTask id="Task_1q6h25z" name="abgelehnten Bewreber aus der Datenbank löschen" camunda:class="/Immatrikulation/src/main/ImmatrikulationBewerber.AbgelehntenStudentenLoeschenDelegate">
+    <bpmn:serviceTask id="Task_1q6h25z" name="abgelehnten Bewerber aus der Datenbank löschen" camunda:class="ImmatrikulationBewerber.AbgelehntenStudentenLoeschenDelegate">
       <bpmn:incoming>SequenceFlow_1e2qdka</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0yoauw1</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -727,11 +727,11 @@
         <di:waypoint x="3806" y="1115" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_0z21dzn_di" bpmnElement="TextAnnotation_0z21dzn">
-        <dc:Bounds x="2990" y="290" width="180" height="90" />
+        <dc:Bounds x="2990" y="335" width="180" height="90" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0wbts0z_di" bpmnElement="Association_0wbts0z">
-        <di:waypoint x="2890" y="371" />
-        <di:waypoint x="2990" y="352" />
+        <di:waypoint x="2890" y="381" />
+        <di:waypoint x="2990" y="380" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="TextAnnotation_1jm8gmf_di" bpmnElement="TextAnnotation_1jm8gmf">
         <dc:Bounds x="1940" y="610" width="149" height="82" />
