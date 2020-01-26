@@ -35,6 +35,7 @@ public class NcAuswertungPruefenDelegate implements JavaDelegate {
 			execution.setVariable("statusNc", nc);
 		}else  { 
 			nc = false;
+			execution.setVariable("statusID", 5);
 			execution.setVariable("statusNc", nc);
 		}
 		

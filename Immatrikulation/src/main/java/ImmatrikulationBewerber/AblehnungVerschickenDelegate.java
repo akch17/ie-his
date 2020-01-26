@@ -35,16 +35,15 @@ public class AblehnungVerschickenDelegate implements JavaDelegate {
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 
 		Statement stmt = connection.createStatement();
-		
-
+		 
 		int statusID = (int) execution.getVariable("statusID");
-
 		String sql = "select StatusAktuell from his.Status where StatusID = " + statusID;
 		int StatusID = 0;
 		ResultSet res = stmt.executeQuery(sql);
 		while (res.next()) {
 			StatusID = res.getInt(1);
 		}
+		
 
 		// Datenbank schließen
 		connection.close();
@@ -53,7 +52,7 @@ public class AblehnungVerschickenDelegate implements JavaDelegate {
 		String Ablehnungsgrund;
 		GenerateAblehnungsgrund ablehnung = new GenerateAblehnungsgrund();
 		Ablehnungsgrund = ablehnung.AblehungsgrundGenerieren(StatusID);
-
+		
 		// Nun Email erzeugen
 		// Emailinstanz erzeugen
 		Email email = new SimpleEmail();

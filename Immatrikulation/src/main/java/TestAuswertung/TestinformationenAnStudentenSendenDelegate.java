@@ -35,8 +35,12 @@ public class TestinformationenAnStudentenSendenDelegate implements JavaDelegate 
 		email.setFrom("camundaproject12341234@gmail.com"); // Replyadresse angeben
 		email.setSubject("Testerinnerung"); // Betreff
 
-		email.setMsg(
-				"Lieber Bewerber, bitte denken Sie an Ihren Testtermin. Den Termin könnten Sie auf unserer Internetseite:https://www.testhochschule.de/testtermine entnehmen! Wir wünschen Ihnen viel Erfolg.");
+		email.setMsg("Liebe Studieninteressierte, lieber Studieninteressierter,\r\n" + "\r\n" + "\r\n"
+				+ "vielen Dank für Deine Bewerbung und dem damit verbundenen Interesse an unserer Hochschule.\r\n"
+				+ "\r\n" + " \r\n" + "\r\n"
+				+ "Bitte beachte die Termine für die Eignungsprüfungen der jeweiligen Studiengänge. Die aktuellen Termine findest du unter https://ww.hochschule-riedtal.de/eignungstesttermine. \r\n"
+				+ " \r\n" + "\r\n" + "\r\n" + "Mit freundlichen Grüßen\r\n" + "\r\n" + "Ihr Studiensekretariat \r\n"
+				+ " Hochschule Riedtal");
 
 		for (int i = 0; i < emaillist.size(); i++) {
 			email.addTo(emaillist.get(i));

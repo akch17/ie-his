@@ -25,18 +25,22 @@ public class TweetZahlungsendeSendenDelegate implements JavaDelegate {
 		// Connection zu DB aufbauen; DB-Name: his; user: root; password: root
 		Connection connection;
 
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
+		connection = DriverManager
+				.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 
 		Statement stmt = connection.createStatement();
 
-		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der idspieltipp=3 aus
+		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der
+		// idspieltipp=3 aus
 		// der
-		// Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst gibt es
+		// Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst
+		// gibt es
 		// eine
 		// Fehlermeldung
 		String sql = "Select Fristanfang from his.datum";
 		String sql2 = "SELECT Fristende FROM his.datum";
-		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der Konsole zu
+		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der
+		// Konsole zu
 		// Debuggingzwecken
 
 		// Ausführen des Selects auf der DB
@@ -60,9 +64,11 @@ public class TweetZahlungsendeSendenDelegate implements JavaDelegate {
 		// Bewerberende", Datumende.get(0));
 		// Zahlugsende", Datumende.get(1));
 
-		// Hilfsmethoden zum Testen um an jeden Tweet Zufallszahl zu hängen um ihn zu
+		// Hilfsmethoden zum Testen um an jeden Tweet Zufallszahl zu hängen um
+		// ihn zu
 		// unterscheiden
-		// Grund: Twitter meldet Fehler wenn gleicher Tweet zweimal gesendet wird
+		// Grund: Twitter meldet Fehler wenn gleicher Tweet zweimal gesendet
+		// wird
 		Random r = new Random();
 		Integer zufallszahl = r.nextInt();
 
@@ -70,8 +76,9 @@ public class TweetZahlungsendeSendenDelegate implements JavaDelegate {
 		String Datum = datumformat.format(Datumende.get(1));
 
 		// Tweetnachricht zusammenstellen
-		String content = zufallszahl.toString() + "Liebe Studierende, die Zahlungsfrist endet am " + Datum
-				+ ". Sie haben noch eine Woche Zeit das Geld zu überweisen.";
+		String content = zufallszahl.toString()
+				+ "Liebe Studieninteressierte, die Zahlungsfrist für das Semester endet am " + Datum
+				+ ". Die Immatrikulation erfolgt durch die fristgerechte Überweisung des Semesterbeitrages. ";
 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo",

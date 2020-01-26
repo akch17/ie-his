@@ -25,7 +25,8 @@ public class TweetBewerbungsendeSendenDelegate implements JavaDelegate {
 		// Connection zu DB aufbauen; DB-Name: his; user: root; password: root
 		Connection connection;
 
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
+		connection = DriverManager
+				.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 
 		Statement stmt = connection.createStatement();
 
@@ -70,8 +71,9 @@ public class TweetBewerbungsendeSendenDelegate implements JavaDelegate {
 		String Datum = datumformat.format(Datumende.get(0));
 
 		// Tweetnachricht zusammenstellen
-		String content = zufallszahl.toString() + " Liebe Bewerber, die Bewerbungsfrist endet am " + Datum
-				+ "! Bitte denken Sie daran Ihre Bewerbungen rechtzeitig zu senden.";
+		String content = zufallszahl.toString()
+				+ " Liebe Studieninteressierte, die Bewerbungsphase für das Semester endet am " + Datum
+				+ ". Bitte achtet darauf, dass nur solche Anträge am Verfahren teilnehmen können, die frist- und formgerecht im Studienbüro vorliegen!";
 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo",

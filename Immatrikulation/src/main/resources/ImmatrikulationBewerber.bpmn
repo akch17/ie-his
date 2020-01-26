@@ -46,7 +46,7 @@
       <bpmn:outgoing>SequenceFlow_1ehq5nv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_0ubsvlr" name="unbeschränkt" sourceRef="ExclusiveGateway_1r0aazg" targetRef="ExclusiveGateway_0dzeg7x">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'unbeschränkt'}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'unbeschraenkt'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0nr7wuj" name="Test" sourceRef="ExclusiveGateway_1r0aazg" targetRef="ExclusiveGateway_1wz6gbz">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${zulassungsBezeichnung == 'Test'}</bpmn:conditionExpression>

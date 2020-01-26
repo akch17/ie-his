@@ -25,18 +25,22 @@ public class TweetBewerbungsstartSendenDelegate implements JavaDelegate {
 		// Connection zu DB aufbauen; DB-Name: his; user: root; password: root
 		Connection connection;
 
-		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
+		connection = DriverManager
+				.getConnection("jdbc:mysql://localhost:3306/his?user=root&password=root&useSSL=false");
 
 		Statement stmt = connection.createStatement();
 
-		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der idspieltipp=3 aus
+		// ACHTUNG: hier wird das tippdatum für den Spieltipp mit der
+		// idspieltipp=3 aus
 		// der
-		// Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst gibt es
+		// Datenbank geholt. Das setzt voraus, dass es den Eintrag gibt sonst
+		// gibt es
 		// eine
 		// Fehlermeldung
 		String sql = "Select Fristanfang from his.datum";
 		String sql2 = "SELECT Fristende FROM his.datum";
-		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der Konsole zu
+		// Optional: Ausgabe des Klassennamens und des SQL-Strings auf der
+		// Konsole zu
 		// Debuggingzwecken
 		System.out.println(this.getClass().getName() + ": \n" + sql);
 
@@ -61,9 +65,11 @@ public class TweetBewerbungsstartSendenDelegate implements JavaDelegate {
 		// Bewerberende", Datumende.get(0));
 		// Zahlugsende", Datumende.get(1));
 
-		// Hilfsmethoden zum Testen um an jeden Tweet Zufallszahl zu hängen um ihn zu
+		// Hilfsmethoden zum Testen um an jeden Tweet Zufallszahl zu hängen um
+		// ihn zu
 		// unterscheiden
-		// Grund: Twitter meldet Fehler wenn gleicher Tweet zweimal gesendet wird
+		// Grund: Twitter meldet Fehler wenn gleicher Tweet zweimal gesendet
+		// wird
 		Random r = new Random();
 		Integer zufallszahl = r.nextInt();
 
@@ -71,8 +77,9 @@ public class TweetBewerbungsstartSendenDelegate implements JavaDelegate {
 		String Datum = datumformat.format(Datumstart.get(0));
 
 		// Tweetnachricht zusammenstellen
-		String content = zufallszahl.toString() + " Liebe Bewerber, eure Bewerbungen könnt Ihr ab heute, dem " + Datum
-				+ ", senden!";
+		String content = zufallszahl.toString()
+				+ " Liebe Studieninteressierte, die Bewerbungsphase für das Semester beginnt am " + Datum
+				+ ". Bitte achtet darauf, dass nur solche Anträge am Verfahren teilnehmen können, die frist- und formgerecht im Studienbüro vorliegen!";
 
 		// Zugangstoken des Camunda-Twittertestaccounts holen
 		AccessToken accessToken = new AccessToken("220324559-jet1dkzhSOeDWdaclI48z5txJRFLCnLOK45qStvo",

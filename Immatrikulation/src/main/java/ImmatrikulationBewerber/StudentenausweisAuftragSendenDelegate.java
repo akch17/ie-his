@@ -30,8 +30,11 @@ public class StudentenausweisAuftragSendenDelegate implements JavaDelegate {
 		email.setFrom("camundaproject12341234@gmail.com"); // Replyadresse angeben
 		email.setSubject("Bitte Ausweis drucken"); // Betreff
 
-		email.setMsg("Hallo Prüfungsamt, bitte drucken Sie den Ausweis für den Studenten mit der Matrikelnummer: "
-				+ execution.getVariable("Matrikelnummer") + ".");
+		email.setMsg("Sehr geehrte Kollegen vom Prüfungsamt ,"
+				+"\r\n" + "\r\n" + "\r\n"
+				+ "bitte drucken Sie einen Studierendenausweis für den Studenten mit der folgenden Matrikelnummer: " + execution.getVariable("Matrikelnummer") + ".\r\n"
+				+ " \r\n" + "\r\n" + "\r\n" + "Mit freundlichen Grüßen\r\n" + "\r\n" + "Das Studiensekretariat \r\n"
+				+ " Hochschule Riedtal");
 		email.addTo("camundaproject12341234@gmail.com");
 
 		email.send();
